@@ -1,0 +1,180 @@
+[
+  {
+    "id": "walk_short",
+    "category": "Physical",
+    "base_template": "Take a {duration}-minute walk.",
+    "variables": {
+      "duration": ["2", "5", "10", "20"]
+    },
+    "clinical_constraints": [],
+    "applicable_event_types": ["steps", "sleep", "hrv"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 43200
+  },
+  {
+    "id": "stretch",
+    "category": "Physical",
+    "base_template": "Try a {duration}-minute stretch.",
+    "variables": {
+      "duration": ["2", "5", "10"]
+    },
+    "clinical_constraints": [],
+    "applicable_event_types": ["heart_rate", "hrv"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 43200
+  },
+  {
+    "id": "breathing",
+    "category": "Cognitive",
+    "base_template": "Do {count} deep breaths.",
+    "variables": {
+      "count": ["4", "6", "10"]
+    },
+    "clinical_constraints": [],
+    "applicable_event_types": ["heart_rate", "hrv", "blood_pressure"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 7200
+  },
+  {
+    "id": "mindfulness",
+    "category": "Cognitive",
+    "base_template": "Take a {duration}-minute mindfulness break.",
+    "variables": {
+      "duration": ["2", "5", "10"]
+    },
+    "clinical_constraints": [],
+    "applicable_event_types": ["hrv", "heart_rate"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 43200
+  },
+  {
+    "id": "hydrate",
+    "category": "Nutritional",
+    "base_template": "Drink a glass of water.",
+    "variables": {},
+    "clinical_constraints": [],
+    "applicable_event_types": ["body_temperature", "glucose"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 7200
+  },
+  {
+    "id": "glucose_tablet",
+    "category": "Safety",
+    "base_template": "Have a glucose tablet now.",
+    "variables": {},
+    "clinical_constraints": [
+      {
+        "metric": "glucose",
+        "operator": "lt",
+        "threshold": [4.0],
+        "action": { "ForceAtom": { "atom_id": "glucose_tablet" } }
+      }
+    ],
+    "applicable_event_types": ["glucose"],
+    "applicable_severities": ["warning", "critical"],
+    "rate_limit_secs": 1800
+  },
+  {
+    "id": "rest_prompt",
+    "category": "Safety",
+    "base_template": "Sit down and rest for a few minutes.",
+    "variables": {},
+    "clinical_constraints": [
+      {
+        "metric": "heart_rate",
+        "operator": "gt",
+        "threshold": [150.0],
+        "action": { "ForceAtom": { "atom_id": "rest_prompt" } }
+      }
+    ],
+    "applicable_event_types": ["heart_rate", "blood_pressure"],
+    "applicable_severities": ["warning", "critical"],
+    "rate_limit_secs": 3600
+  },
+  {
+    "id": "meal_balance",
+    "category": "Nutritional",
+    "base_template": "Include protein with your next meal.",
+    "variables": {},
+    "clinical_constraints": [],
+    "applicable_event_types": ["glucose"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 43200
+  },
+  {
+    "id": "sleep_hygiene",
+    "category": "Cognitive",
+    "base_template": "Set a bedtime reminder for tonight.",
+    "variables": {},
+    "clinical_constraints": [],
+    "applicable_event_types": ["sleep"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 86400
+  },
+  {
+    "id": "flights_challenge",
+    "category": "Physical",
+    "base_template": "Climb {count} extra flights today.",
+    "variables": {
+      "count": ["1", "2", "3", "5"]
+    },
+    "clinical_constraints": [],
+    "applicable_event_types": ["flights_climbed", "steps"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 43200
+  },
+  {
+    "id": "thought_record",
+    "category": "Cognitive",
+    "base_template": "Write down one thought and reframe it.",
+    "variables": {},
+    "clinical_constraints": [],
+    "applicable_event_types": ["hrv"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 43200
+  },
+  {
+    "id": "seek_medical",
+    "category": "Safety",
+    "base_template": "Contact your healthcare provider.",
+    "variables": {},
+    "clinical_constraints": [],
+    "applicable_event_types": ["glucose", "heart_rate", "blood_pressure", "body_temperature", "hrv", "steps", "flights_climbed", "sleep"],
+    "applicable_severities": ["critical"],
+    "rate_limit_secs": 3600
+  },
+  {
+    "id": "journaling",
+    "category": "Cognitive",
+    "base_template": "Spend {duration} minutes journaling about how you feel.",
+    "variables": {
+      "duration": ["2", "5"]
+    },
+    "clinical_constraints": [],
+    "applicable_event_types": ["hrv", "sleep"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 86400
+  },
+  {
+    "id": "hydration_reminder",
+    "category": "Nutritional",
+    "base_template": "Have a glass of water with a pinch of salt for electrolytes.",
+    "variables": {},
+    "clinical_constraints": [],
+    "applicable_event_types": ["heart_rate", "body_temperature"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 14400
+  },
+  {
+    "id": "cool_down",
+    "category": "Physical",
+    "base_template": "Do a {duration}-minute cool-down stretch.",
+    "variables": {
+      "duration": ["2", "5"]
+    },
+    "clinical_constraints": [],
+    "applicable_event_types": ["heart_rate"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 21600
+  }
+]
