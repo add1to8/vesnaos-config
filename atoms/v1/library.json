@@ -4,91 +4,52 @@
     "category": "Physical",
     "base_template": "Take a {duration}-minute walk.",
     "variables": {
-      "duration": [
-        "2",
-        "5",
-        "10",
-        "20"
-      ]
+      "duration": ["2", "5", "10", "20"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "steps",
-      "sleep",
-      "hrv"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning"
-    ],
-    "rate_limit_secs": 43200
+    "applicable_event_types": ["steps", "sleep", "hrv"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 43200,
+    "response_type": "action_with_difficulty"
   },
   {
     "id": "stretch",
     "category": "Physical",
     "base_template": "Try a {duration}-minute stretch.",
     "variables": {
-      "duration": [
-        "2",
-        "5",
-        "10"
-      ]
+      "duration": ["2", "5", "10"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "heart_rate",
-      "hrv"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning"
-    ],
-    "rate_limit_secs": 43200
+    "applicable_event_types": ["heart_rate", "hrv"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 43200,
+    "response_type": "action_with_difficulty"
   },
   {
     "id": "breathing",
     "category": "Cognitive",
     "base_template": "Do {count} deep breaths.",
     "variables": {
-      "count": [
-        "4",
-        "6",
-        "10"
-      ]
+      "count": ["4", "6", "10"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "heart_rate",
-      "hrv",
-      "blood_pressure"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning"
-    ],
-    "rate_limit_secs": 7200
+    "applicable_event_types": ["heart_rate", "hrv", "blood_pressure"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 7200,
+    "response_type": "action"
   },
   {
     "id": "mindfulness",
     "category": "Cognitive",
     "base_template": "Take a {duration}-minute mindfulness break.",
     "variables": {
-      "duration": [
-        "2",
-        "5",
-        "10"
-      ]
+      "duration": ["2", "5", "10"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "hrv",
-      "heart_rate"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning"
-    ],
-    "rate_limit_secs": 43200
+    "applicable_event_types": ["hrv", "heart_rate"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 43200,
+    "response_type": "action_with_difficulty"
   },
   {
     "id": "hydrate",
@@ -96,15 +57,12 @@
     "base_template": "Drink a glass of water.",
     "variables": {},
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "body_temperature",
-      "glucose"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning"
-    ],
-    "rate_limit_secs": 7200
+    "applicable_event_types": ["body_temperature", "glucose"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 7200,
+    "response_type": "numeric_input",
+    "response_prompt": "How many glasses?",
+    "response_unit": "glasses"
   },
   {
     "id": "glucose_tablet",
@@ -115,24 +73,14 @@
       {
         "metric": "glucose",
         "operator": "lt",
-        "threshold": [
-          4.0
-        ],
-        "action": {
-          "ForceAtom": {
-            "atom_id": "glucose_tablet"
-          }
-        }
+        "threshold": [4.0],
+        "action": { "ForceAtom": { "atom_id": "glucose_tablet" } }
       }
     ],
-    "applicable_event_types": [
-      "glucose"
-    ],
-    "applicable_severities": [
-      "warning",
-      "critical"
-    ],
-    "rate_limit_secs": 1800
+    "applicable_event_types": ["glucose"],
+    "applicable_severities": ["warning", "critical"],
+    "rate_limit_secs": 1800,
+    "response_type": "action"
   },
   {
     "id": "rest_prompt",
@@ -143,25 +91,14 @@
       {
         "metric": "heart_rate",
         "operator": "gt",
-        "threshold": [
-          150.0
-        ],
-        "action": {
-          "ForceAtom": {
-            "atom_id": "rest_prompt"
-          }
-        }
+        "threshold": [150.0],
+        "action": { "ForceAtom": { "atom_id": "rest_prompt" } }
       }
     ],
-    "applicable_event_types": [
-      "heart_rate",
-      "blood_pressure"
-    ],
-    "applicable_severities": [
-      "warning",
-      "critical"
-    ],
-    "rate_limit_secs": 3600
+    "applicable_event_types": ["heart_rate", "blood_pressure"],
+    "applicable_severities": ["warning", "critical"],
+    "rate_limit_secs": 3600,
+    "response_type": "action"
   },
   {
     "id": "meal_balance",
@@ -169,14 +106,10 @@
     "base_template": "Include protein with your next meal.",
     "variables": {},
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "glucose"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning"
-    ],
-    "rate_limit_secs": 43200
+    "applicable_event_types": ["glucose"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 43200,
+    "response_type": "action"
   },
   {
     "id": "sleep_hygiene",
@@ -184,37 +117,25 @@
     "base_template": "Set a bedtime reminder for tonight.",
     "variables": {},
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "sleep"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning"
-    ],
-    "rate_limit_secs": 86400
+    "applicable_event_types": ["sleep"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 86400,
+    "response_type": "action"
   },
   {
     "id": "flights_challenge",
     "category": "Physical",
     "base_template": "Climb {count} extra flights today.",
     "variables": {
-      "count": [
-        "1",
-        "2",
-        "3",
-        "5"
-      ]
+      "count": ["1", "2", "3", "5"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "flights_climbed",
-      "steps"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning"
-    ],
-    "rate_limit_secs": 43200
+    "applicable_event_types": ["flights_climbed", "steps"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 43200,
+    "response_type": "numeric_input",
+    "response_prompt": "How many flights?",
+    "response_unit": "flights"
   },
   {
     "id": "thought_record",
@@ -222,14 +143,11 @@
     "base_template": "Write down one thought and reframe it.",
     "variables": {},
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "hrv"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning"
-    ],
-    "rate_limit_secs": 43200
+    "applicable_event_types": ["hrv"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 43200,
+    "response_type": "text_input",
+    "response_prompt": "What did you write?"
   },
   {
     "id": "seek_medical",
@@ -237,41 +155,24 @@
     "base_template": "Contact your healthcare provider.",
     "variables": {},
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "glucose",
-      "heart_rate",
-      "blood_pressure",
-      "body_temperature",
-      "hrv",
-      "steps",
-      "flights_climbed",
-      "sleep"
-    ],
-    "applicable_severities": [
-      "critical"
-    ],
-    "rate_limit_secs": 3600
+    "applicable_event_types": ["glucose", "heart_rate", "blood_pressure", "body_temperature", "hrv", "steps", "flights_climbed", "sleep"],
+    "applicable_severities": ["critical"],
+    "rate_limit_secs": 3600,
+    "response_type": "action"
   },
   {
     "id": "journaling",
     "category": "Cognitive",
     "base_template": "Spend {duration} minutes journaling about how you feel.",
     "variables": {
-      "duration": [
-        "2",
-        "5"
-      ]
+      "duration": ["2", "5"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "hrv",
-      "sleep"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning"
-    ],
-    "rate_limit_secs": 86400
+    "applicable_event_types": ["hrv", "sleep"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 86400,
+    "response_type": "text_input",
+    "response_prompt": "How are you feeling?"
   },
   {
     "id": "hydration_reminder",
@@ -279,173 +180,178 @@
     "base_template": "Have a glass of water with a pinch of salt for electrolytes.",
     "variables": {},
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "heart_rate",
-      "body_temperature"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning"
-    ],
-    "rate_limit_secs": 14400
+    "applicable_event_types": ["heart_rate", "body_temperature"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 14400,
+    "response_type": "action"
   },
   {
     "id": "cool_down",
     "category": "Physical",
     "base_template": "Do a {duration}-minute cool-down stretch.",
     "variables": {
-      "duration": [
-        "2",
-        "5"
-      ]
+      "duration": ["2", "5"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "heart_rate"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning"
-    ],
-    "rate_limit_secs": 21600
+    "applicable_event_types": ["heart_rate"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 21600,
+    "response_type": "action_with_difficulty"
   },
   {
     "id": "box_breathing",
     "category": "Cognitive",
     "base_template": "Try box breathing: inhale {seconds}s, hold {seconds}s, exhale {seconds}s, hold {seconds}s. Repeat {rounds} times.",
     "variables": {
-      "seconds": [
-        "4",
-        "5",
-        "6"
-      ],
-      "rounds": [
-        "3",
-        "4",
-        "6"
-      ]
+      "seconds": ["4", "5", "6"],
+      "rounds": ["3", "4", "6"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "stress_index",
-      "mood_risk"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning",
-      "critical"
-    ],
-    "rate_limit_secs": 7200
+    "applicable_event_types": ["stress_index", "mood_risk"],
+    "applicable_severities": ["normal", "warning", "critical"],
+    "rate_limit_secs": 7200,
+    "response_type": "action"
   },
   {
     "id": "gratitude_reflection",
     "category": "Cognitive",
     "base_template": "Take a moment to write down {count} things you're grateful for today.",
     "variables": {
-      "count": [
-        "1",
-        "3",
-        "5"
-      ]
+      "count": ["1", "3", "5"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "mood_risk"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning",
-      "critical"
-    ],
-    "rate_limit_secs": 86400
+    "applicable_event_types": ["mood_risk"],
+    "applicable_severities": ["normal", "warning", "critical"],
+    "rate_limit_secs": 86400,
+    "response_type": "text_input",
+    "response_prompt": "What are you grateful for?"
   },
   {
     "id": "sunlight_exposure",
     "category": "Physical",
     "base_template": "Step outside for {duration} minutes of natural light.",
     "variables": {
-      "duration": [
-        "5",
-        "10",
-        "15"
-      ]
+      "duration": ["5", "10", "15"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "mood_risk",
-      "activity_withdrawal"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning",
-      "critical"
-    ],
-    "rate_limit_secs": 43200
+    "applicable_event_types": ["mood_risk", "activity_withdrawal"],
+    "applicable_severities": ["normal", "warning", "critical"],
+    "rate_limit_secs": 43200,
+    "response_type": "action_with_difficulty"
   },
   {
     "id": "sleep_wind_down",
     "category": "Cognitive",
     "base_template": "Start winding down for bed: dim lights and avoid screens for the next {duration} minutes.",
     "variables": {
-      "duration": [
-        "15",
-        "30",
-        "60"
-      ]
+      "duration": ["15", "30", "60"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "sleep_debt"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning",
-      "critical"
-    ],
-    "rate_limit_secs": 86400
+    "applicable_event_types": ["sleep_debt"],
+    "applicable_severities": ["normal", "warning", "critical"],
+    "rate_limit_secs": 86400,
+    "response_type": "action"
   },
   {
     "id": "gentle_walk",
     "category": "Physical",
     "base_template": "Go for a gentle {duration}-minute walk at an easy pace.",
     "variables": {
-      "duration": [
-        "5",
-        "10",
-        "15"
-      ]
+      "duration": ["5", "10", "15"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "activity_withdrawal"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning",
-      "critical"
-    ],
-    "rate_limit_secs": 43200
+    "applicable_event_types": ["activity_withdrawal"],
+    "applicable_severities": ["normal", "warning", "critical"],
+    "rate_limit_secs": 43200,
+    "response_type": "action_with_difficulty"
   },
   {
     "id": "recovery_rest",
     "category": "Cognitive",
     "base_template": "Your body needs recovery. Take {duration} minutes to rest — sit quietly or do gentle stretching.",
     "variables": {
-      "duration": [
-        "5",
-        "10",
-        "15"
-      ]
+      "duration": ["5", "10", "15"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": [
-      "recovery_readiness"
-    ],
-    "applicable_severities": [
-      "normal",
-      "warning",
-      "critical"
-    ],
-    "rate_limit_secs": 43200
+    "applicable_event_types": ["recovery_readiness"],
+    "applicable_severities": ["normal", "warning", "critical"],
+    "rate_limit_secs": 43200,
+    "response_type": "action"
+  },
+  {
+    "id": "confidence_check",
+    "category": "Psychological",
+    "base_template": "On a scale of 1-10, how confident are you in making progress on your health goal today?",
+    "variables": {},
+    "clinical_constraints": [],
+    "applicable_event_types": ["stress_index", "mood_risk", "activity_withdrawal"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 86400,
+    "response_type": "numeric_input",
+    "response_prompt": "Your confidence (1-10)?",
+    "response_unit": "/10"
+  },
+  {
+    "id": "small_win",
+    "category": "Psychological",
+    "base_template": "Name one small health win from today — anything counts.",
+    "variables": {},
+    "clinical_constraints": [],
+    "applicable_event_types": ["mood_risk", "activity_withdrawal", "stress_index"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 86400,
+    "response_type": "text_input",
+    "response_prompt": "What was your win?"
+  },
+  {
+    "id": "if_then_plan",
+    "category": "Psychological",
+    "base_template": "Make one if-then plan: \"If {situation}, then I will {action}.\" What's yours for today?",
+    "variables": {
+      "situation": ["I feel stressed", "I want to skip my walk", "I'm tempted to stay up late"],
+      "action": ["do 4 deep breaths", "walk for just 5 minutes", "dim the lights and stretch"]
+    },
+    "clinical_constraints": [],
+    "applicable_event_types": ["stress_index", "activity_withdrawal", "sleep_debt", "mood_risk"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 86400,
+    "response_type": "text_input",
+    "response_prompt": "Your if-then plan?"
+  },
+  {
+    "id": "barrier_anticipation",
+    "category": "Psychological",
+    "base_template": "Think about one thing that might get in the way of your health goal today. How will you handle it?",
+    "variables": {},
+    "clinical_constraints": [],
+    "applicable_event_types": ["stress_index", "activity_withdrawal", "mood_risk"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 86400,
+    "response_type": "text_input",
+    "response_prompt": "Barrier and your plan?"
+  },
+  {
+    "id": "defusion",
+    "category": "Psychological",
+    "base_template": "Notice a difficult thought right now. Try restating it as: \"I'm having the thought that...\" Does it feel different?",
+    "variables": {},
+    "clinical_constraints": [],
+    "applicable_event_types": ["stress_index", "mood_risk"],
+    "applicable_severities": ["warning", "critical"],
+    "rate_limit_secs": 43200,
+    "response_type": "text_input",
+    "response_prompt": "What thought did you defuse?"
+  },
+  {
+    "id": "values_checkin",
+    "category": "Psychological",
+    "base_template": "Take a moment: did your actions today move you toward what matters most to you?",
+    "variables": {},
+    "clinical_constraints": [],
+    "applicable_event_types": ["mood_risk", "activity_withdrawal", "recovery_readiness"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 86400,
+    "response_type": "text_input",
+    "response_prompt": "How did you align with your values?"
   }
 ]
