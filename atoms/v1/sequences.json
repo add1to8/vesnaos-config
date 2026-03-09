@@ -1,0 +1,88 @@
+[
+  {
+    "id": "seq_thought_record",
+    "category": "Psychological",
+    "steps": [
+      {
+        "template": "Let's work through a thought record. First — what situation triggered the feeling?",
+        "response_type": "text_input",
+        "response_prompt": "Describe the situation briefly"
+      },
+      {
+        "template": "What automatic thought came to mind in that moment?",
+        "response_type": "text_input",
+        "response_prompt": "The thought that came up"
+      },
+      {
+        "template": "How intense is the emotion right now, from 1 to 10?",
+        "response_type": "numeric_input",
+        "response_prompt": "Intensity",
+        "response_unit": "/10"
+      },
+      {
+        "template": "What evidence supports or contradicts that thought?",
+        "response_type": "text_input",
+        "response_prompt": "Evidence for and against"
+      },
+      {
+        "template": "Can you reframe the thought more realistically?",
+        "response_type": "text_input",
+        "response_prompt": "Your balanced thought"
+      }
+    ],
+    "applicable_event_types": ["stress_index", "mood_risk", "self_report_mood", "self_report_stress"],
+    "applicable_severities": ["warning", "critical"],
+    "rate_limit_secs": 43200,
+    "timeout_secs": 3600
+  },
+  {
+    "id": "seq_journaling",
+    "category": "Psychological",
+    "steps": [
+      {
+        "template": "Let's do some guided journaling. What's on your mind right now?",
+        "response_type": "text_input",
+        "response_prompt": "What's on your mind?"
+      },
+      {
+        "template": "Write freely for a couple of minutes about that — there's no wrong answer.",
+        "response_type": "text_input",
+        "response_prompt": "Your thoughts"
+      },
+      {
+        "template": "Looking back at what you wrote, what stands out to you?",
+        "response_type": "text_input",
+        "response_prompt": "Your reflection"
+      }
+    ],
+    "applicable_event_types": ["stress_index", "mood_risk", "self_report_mood", "self_report_stress", "self_report_energy"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 43200,
+    "timeout_secs": 3600
+  },
+  {
+    "id": "seq_if_then",
+    "category": "Psychological",
+    "steps": [
+      {
+        "template": "Let's build an implementation intention. What's one health goal you want to work on today?",
+        "response_type": "text_input",
+        "response_prompt": "Your goal"
+      },
+      {
+        "template": "What might get in the way of that goal?",
+        "response_type": "text_input",
+        "response_prompt": "The barrier"
+      },
+      {
+        "template": "Now make an if-then plan: 'If [that barrier happens], then I will [your action].'",
+        "response_type": "text_input",
+        "response_prompt": "Your if-then plan"
+      }
+    ],
+    "applicable_event_types": ["stress_index", "mood_risk", "self_report_mood", "self_report_stress", "activity_withdrawal"],
+    "applicable_severities": ["normal", "warning"],
+    "rate_limit_secs": 86400,
+    "timeout_secs": 3600
+  }
+]
