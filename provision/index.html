@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthOS — Employer Setup</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a1a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .card {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 40px 32px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+        .employer-name {
+            font-size: 18px;
+            color: #34C759;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        p {
+            font-size: 15px;
+            line-height: 1.5;
+            color: #a0a0b0;
+            margin-bottom: 24px;
+        }
+        .status {
+            font-size: 14px;
+            color: #a0a0b0;
+            margin-bottom: 24px;
+            min-height: 20px;
+        }
+        .status.success { color: #34C759; }
+        .status.trying { color: #FF9500; }
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            margin: 6px;
+            transition: transform 0.1s;
+        }
+        .btn:active { transform: scale(0.97); }
+        .btn-primary {
+            background: #34C759;
+            color: #000;
+        }
+        .btn-secondary {
+            background: #2a2a3e;
+            color: #e0e0e0;
+        }
+        .store-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .privacy {
+            margin-top: 24px;
+            padding: 16px;
+            background: #0f0f22;
+            border-radius: 12px;
+            text-align: left;
+        }
+        .privacy h3 {
+            font-size: 13px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .privacy ul {
+            list-style: none;
+            padding: 0;
+        }
+        .privacy li {
+            font-size: 12px;
+            color: #808090;
+            padding: 3px 0;
+        }
+        .privacy li::before {
+            content: "✓ ";
+            color: #34C759;
+        }
+        .footer {
+            margin-top: 32px;
+            font-size: 12px;
+            color: #505060;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon">🏢</div>
+        <h1>HealthOS</h1>
+        <div class="employer-name" id="employer-name"></div>
+        <p>Your employer is providing HealthOS as a wellness benefit. All health data stays on your device.</p>
+
+        <div class="status" id="status"></div>
+
+        <!-- Shown when app opens successfully -->
+        <div id="app-opened" style="display:none;">
+            <p class="status success">App configured — you're all set!</p>
+        </div>
+
+        <!-- Shown when app is not installed -->
+        <div id="install-prompt" style="display:none;">
+            <p>Install HealthOS, then tap the button below to complete setup.</p>
+            <div class="store-buttons">
+                <a href="#" id="store-link" class="btn btn-primary">Download HealthOS</a>
+                <a href="#" id="retry-link" class="btn btn-secondary">I already have it — retry</a>
+            </div>
+        </div>
+
+        <div class="privacy">
+            <h3>What your employer sees</h3>
+            <ul>
+                <li>Aggregate engagement stats only (no individual data)</li>
+                <li>Minimum group size of 25 before any stats shown</li>
+                <li>You can opt out any time in Settings</li>
+                <li>All health data stays encrypted on your phone</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        HealthOS by Code 1001 — Privacy-first health monitoring
+    </div>
+
+    <script>
+        // Parse URL params
+        const params = new URLSearchParams(window.location.search);
+        const employerId = params.get('employer_id') || '';
+        const analytics = params.get('analytics') || 'true';
+        const endpoint = params.get('endpoint') || '';
+
+        // Display employer name
+        const nameEl = document.getElementById('employer-name');
+        if (employerId) {
+            nameEl.textContent = employerId.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        }
+
+        // Build deep link
+        let deepLink = `healthos://provision?employer_id=${encodeURIComponent(employerId)}&analytics=${analytics}`;
+        if (endpoint) deepLink += `&endpoint=${encodeURIComponent(endpoint)}`;
+
+        // Detect platform
+        const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+        const isAndroid = /Android/.test(navigator.userAgent);
+
+        // Set store link
+        const storeLink = document.getElementById('store-link');
+        if (isIOS) {
+            // Replace with actual App Store URL when available
+            storeLink.href = 'https://apps.apple.com/search?term=healthos';
+            storeLink.textContent = 'Download from App Store';
+        } else {
+            // Replace with actual Play Store URL when available
+            storeLink.href = 'https://play.google.com/store/search?q=healthos';
+            storeLink.textContent = 'Download from Play Store';
+        }
+
+        // Retry link
+        document.getElementById('retry-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            tryOpenApp();
+        });
+
+        // Try to open the app
+        function tryOpenApp() {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = 'Opening HealthOS...';
+            statusEl.className = 'status trying';
+
+            document.getElementById('install-prompt').style.display = 'none';
+            document.getElementById('app-opened').style.display = 'none';
+
+            // Try deep link
+            window.location.href = deepLink;
+
+            // If still on page after 2.5s, app isn't installed
+            setTimeout(function() {
+                // Check if page is still visible (app didn't open)
+                if (!document.hidden) {
+                    statusEl.textContent = 'HealthOS is not installed yet.';
+                    statusEl.className = 'status';
+                    document.getElementById('install-prompt').style.display = 'block';
+                } else {
+                    document.getElementById('app-opened').style.display = 'block';
+                    statusEl.textContent = '';
+                }
+            }, 2500);
+        }
+
+        // Auto-try on page load if employer_id is present
+        if (employerId) {
+            tryOpenApp();
+        } else {
+            document.getElementById('status').textContent = 'No employer code found in URL.';
+        }
+    </script>
+</body>
+</html>
