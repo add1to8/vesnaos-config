@@ -119,16 +119,23 @@
             errorEl.textContent = 'Signing in...';
 
             try {
-                // Validate by fetching aggregates — if API key is wrong, Edge Function returns 403
-                const resp = await fetch(`${SUPABASE_URL}/functions/v1/ingest`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey },
-                    body: JSON.stringify({ employer_id: employer, week_start: 0 }) // dummy to validate
-                });
+                // Validate credentials via dashboard Edge Function
+                const resp = await fetch(
+                    `${SUPABASE_URL}/functions/v1/dashboard?employer_id=${encodeURIComponent(employer)}`,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                            'x-api-key': apiKey,
+                        }
+                    }
+                );
 
-                // We expect a 400 (missing real data) or 200 if key is valid, 403 if invalid
                 if (resp.status === 403) {
                     errorEl.textContent = 'Invalid employer ID or API key.';
+                    return;
+                }
+                if (!resp.ok) {
+                    errorEl.textContent = 'Connection error. Try again.';
                     return;
                 }
 
@@ -161,19 +168,22 @@
 
         async function loadAggregates() {
             try {
-                // Direct REST query with RLS bypass via service role
-                // In production, use a read-only Edge Function instead
                 const resp = await fetch(
-                    `${SUPABASE_URL}/rest/v1/weekly_aggregates?employer_id=eq.${currentEmployer}&order=week_start.desc&limit=52`,
+                    `${SUPABASE_URL}/functions/v1/dashboard?employer_id=${encodeURIComponent(currentEmployer)}`,
                     {
                         headers: {
-                            'apikey': SUPABASE_ANON_KEY,
                             'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                            'x-api-key': currentApiKey,
                         }
                     }
                 );
                 if (resp.ok) {
-                    aggregates = await resp.json();
+                    const data = await resp.json();
+                    aggregates = data.aggregates || [];
+                    // Update employer name from server
+                    if (data.employer?.name) {
+                        document.getElementById('employer-name').textContent = data.employer.name;
+                    }
                 } else {
                     aggregates = [];
                 }
