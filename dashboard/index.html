@@ -96,6 +96,7 @@
         let currentApiKey = null;
         let aggregates = [];
         let weekIndex = 0;
+        let minCohort = 25;
 
         // Check stored session
         const stored = sessionStorage.getItem('healthos_dashboard');
@@ -180,6 +181,7 @@
                 if (resp.ok) {
                     const data = await resp.json();
                     aggregates = data.aggregates || [];
+                    minCohort = data.min_cohort || 25;
                     // Update employer name from server
                     if (data.employer?.name) {
                         document.getElementById('employer-name').textContent = data.employer.name;
@@ -213,13 +215,32 @@
             const end = new Date(agg.week_end * 1000);
             weekLabel.textContent = `${start.toLocaleDateString()} — ${end.toLocaleDateString()} (Week ${weekIndex + 1} of ${aggregates.length})`;
 
+            // Cohort check
+            if (!agg.cohort_met) {
+                statsGrid.innerHTML = `
+                    <div class="stat-card" style="grid-column: 1/-1; text-align: center;">
+                        <div class="stat-label">Participants This Week</div>
+                        <div class="stat-value orange">${agg.device_count}</div>
+                        <p style="margin-top:12px;color:#808090;font-size:13px;">
+                            Minimum ${minCohort} participants required before aggregate data is shown.
+                            This protects individual employee privacy.
+                        </p>
+                    </div>`;
+                metricsTable.innerHTML = '';
+                return;
+            }
+
             // Stats cards
             const metrics = agg.metrics || {};
             const totalReadings = Object.values(metrics).reduce((sum, m) => sum + (m.count || 0), 0);
 
             statsGrid.innerHTML = `
                 <div class="stat-card">
-                    <div class="stat-label">Active Days</div>
+                    <div class="stat-label">Participants</div>
+                    <div class="stat-value green">${agg.device_count}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Avg Active Days</div>
                     <div class="stat-value green">${agg.active_days}/7</div>
                 </div>
                 <div class="stat-card">
@@ -235,8 +256,8 @@
                     <div class="stat-value red">${agg.alert_count_critical}</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">Journey Active</div>
-                    <div class="stat-value ${agg.journey_active ? 'green' : ''}">${agg.journey_active ? 'Yes' : 'No'}</div>
+                    <div class="stat-label">Journeys Active</div>
+                    <div class="stat-value green">${agg.journey_active_count || 0}</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Metric Types</div>
