@@ -155,7 +155,6 @@
         const params = new URLSearchParams(window.location.search);
         const employerId = params.get('employer_id') || '';
         const analytics = params.get('analytics') || 'true';
-        const apiKey = params.get('api_key') || '';
         const endpoint = params.get('endpoint') || '';
 
         // Display employer name
@@ -166,7 +165,6 @@
 
         // Build deep link
         let deepLink = `healthos://provision?employer_id=${encodeURIComponent(employerId)}&analytics=${analytics}`;
-        if (apiKey) deepLink += `&api_key=${encodeURIComponent(apiKey)}`;
         if (endpoint) deepLink += `&endpoint=${encodeURIComponent(endpoint)}`;
 
         // Detect platform
