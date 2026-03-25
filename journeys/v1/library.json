@@ -5751,10 +5751,21 @@
             }
           ]
         },
-        "next": [
-          "n_w1s2_baseline"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w1s2_baseline"
+          }
+        ]
       },
       "n_w1s2_baseline": {
         "id": "n_w1s2_baseline",
@@ -5771,10 +5782,21 @@
             }
           ]
         },
-        "next": [
-          "n_w2s1_walking"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w2s1_walking"
+          }
+        ]
       },
       "_comment_week2": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 WEEK 2: Walking Goals and Gentle Stretching \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
       "n_w2s1_walking": {
@@ -5792,10 +5814,21 @@
             }
           ]
         },
-        "next": [
-          "n_w2s2_stretching"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w2s2_stretching"
+          }
+        ]
       },
       "n_w2s2_stretching": {
         "id": "n_w2s2_stretching",
@@ -5812,10 +5845,21 @@
             }
           ]
         },
-        "next": [
-          "n_w3s1_bodyweight"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w3s1_bodyweight"
+          }
+        ]
       },
       "_comment_week3": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 WEEK 3: Introducing Bodyweight Exercises \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
       "n_w3s1_bodyweight": {
@@ -5833,10 +5877,21 @@
             }
           ]
         },
-        "next": [
-          "n_w3s2_protein"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w3s2_protein"
+          }
+        ]
       },
       "n_w3s2_protein": {
         "id": "n_w3s2_protein",
@@ -5853,10 +5908,21 @@
             }
           ]
         },
-        "next": [
-          "n_w4s1_resistance"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w4s1_resistance"
+          }
+        ]
       },
       "_comment_week4": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 WEEK 4: Resistance Training for Lean Mass \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
       "n_w4s1_resistance": {
@@ -5874,10 +5940,21 @@
             }
           ]
         },
-        "next": [
-          "n_w4s2_lean_mass"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w4s2_lean_mass"
+          }
+        ]
       },
       "n_w4s2_lean_mass": {
         "id": "n_w4s2_lean_mass",
@@ -5894,10 +5971,21 @@
             }
           ]
         },
-        "next": [
-          "n_w5s1_routine"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w5s1_routine"
+          }
+        ]
       },
       "_comment_week5": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 WEEK 5: Building Routine and Tracking Progress \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
       "n_w5s1_routine": {
@@ -5915,10 +6003,21 @@
             }
           ]
         },
-        "next": [
-          "n_w5s2_progress"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w5s2_progress"
+          }
+        ]
       },
       "n_w5s2_progress": {
         "id": "n_w5s2_progress",
@@ -5935,10 +6034,21 @@
             }
           ]
         },
-        "next": [
-          "n_w6s1_maintenance"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w6s1_maintenance"
+          }
+        ]
       },
       "_comment_week6": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 WEEK 6: Maintenance Plan and Celebration \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
       "n_w6s1_maintenance": {
@@ -5956,10 +6066,21 @@
             }
           ]
         },
-        "next": [
-          "n_w6s2_celebrate"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w6s2_celebrate"
+          }
+        ]
       },
       "n_w6s2_celebrate": {
         "id": "n_w6s2_celebrate",
@@ -5976,8 +6097,16 @@
             }
           ]
         },
-        "next": [],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": []
       }
     }
   },
@@ -6022,10 +6151,21 @@
             }
           ]
         },
-        "next": [
-          "n_w1s2_diary"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w1s2_diary"
+          }
+        ]
       },
       "n_w1s2_diary": {
         "id": "n_w1s2_diary",
@@ -6042,10 +6182,21 @@
             }
           ]
         },
-        "next": [
-          "n_w2s1_hygiene"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w2s1_hygiene"
+          }
+        ]
       },
       "_comment_week2": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 WEEK 2: Sleep Hygiene and Wind-Down Routine \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
       "n_w2s1_hygiene": {
@@ -6063,10 +6214,21 @@
             }
           ]
         },
-        "next": [
-          "n_w2s2_winddown"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w2s2_winddown"
+          }
+        ]
       },
       "n_w2s2_winddown": {
         "id": "n_w2s2_winddown",
@@ -6083,10 +6245,21 @@
             }
           ]
         },
-        "next": [
-          "n_w3s1_gi_sleep"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w3s1_gi_sleep"
+          }
+        ]
       },
       "_comment_week3": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 WEEK 3: Managing GI-Related Sleep Disruption \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
       "n_w3s1_gi_sleep": {
@@ -6104,10 +6277,21 @@
             }
           ]
         },
-        "next": [
-          "n_w3s2_relaxation"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w3s2_relaxation"
+          }
+        ]
       },
       "n_w3s2_relaxation": {
         "id": "n_w3s2_relaxation",
@@ -6124,10 +6308,21 @@
             }
           ]
         },
-        "next": [
-          "n_w4s1_sustain"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w4s1_sustain"
+          }
+        ]
       },
       "_comment_week4": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 WEEK 4: Sustaining Good Sleep \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
       "n_w4s1_sustain": {
@@ -6145,10 +6340,21 @@
             }
           ]
         },
-        "next": [
-          "n_w4s2_doctor"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w4s2_doctor"
+          }
+        ]
       },
       "n_w4s2_doctor": {
         "id": "n_w4s2_doctor",
@@ -6165,8 +6371,16 @@
             }
           ]
         },
-        "next": [],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": []
       }
     }
   },
@@ -6211,10 +6425,21 @@
             }
           ]
         },
-        "next": [
-          "n_w1s2_readiness"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w1s2_readiness"
+          }
+        ]
       },
       "n_w1s2_readiness": {
         "id": "n_w1s2_readiness",
@@ -6231,10 +6456,21 @@
             }
           ]
         },
-        "next": [
-          "n_w2s1_triggers"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w2s1_triggers"
+          }
+        ]
       },
       "_comment_week2": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 WEEK 2: Identifying Triggers and High-Risk Situations \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
       "n_w2s1_triggers": {
@@ -6252,10 +6488,21 @@
             }
           ]
         },
-        "next": [
-          "n_w2s2_highrisk"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w2s2_highrisk"
+          }
+        ]
       },
       "n_w2s2_highrisk": {
         "id": "n_w2s2_highrisk",
@@ -6272,10 +6519,21 @@
             }
           ]
         },
-        "next": [
-          "n_w3s1_ifthen"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w3s1_ifthen"
+          }
+        ]
       },
       "_comment_week3": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 WEEK 3: Building If-Then Plans \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
       "n_w3s1_ifthen": {
@@ -6293,10 +6551,21 @@
             }
           ]
         },
-        "next": [
-          "n_w3s2_practice"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w3s2_practice"
+          }
+        ]
       },
       "n_w3s2_practice": {
         "id": "n_w3s2_practice",
@@ -6313,10 +6582,21 @@
             }
           ]
         },
-        "next": [
-          "n_w4s1_activity"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w4s1_activity"
+          }
+        ]
       },
       "_comment_week4": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 WEEK 4: Strengthening Your Activity Routine \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
       "n_w4s1_activity": {
@@ -6334,10 +6614,21 @@
             }
           ]
         },
-        "next": [
-          "n_w4s2_identity"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w4s2_identity"
+          }
+        ]
       },
       "n_w4s2_identity": {
         "id": "n_w4s2_identity",
@@ -6354,10 +6645,21 @@
             }
           ]
         },
-        "next": [
-          "n_w5s1_nutrition"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w5s1_nutrition"
+          }
+        ]
       },
       "_comment_week5": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 WEEK 5: Nutrition Foundations Without Medication \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
       "n_w5s1_nutrition": {
@@ -6375,10 +6677,21 @@
             }
           ]
         },
-        "next": [
-          "n_w5s2_portions"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w5s2_portions"
+          }
+        ]
       },
       "n_w5s2_portions": {
         "id": "n_w5s2_portions",
@@ -6395,10 +6708,21 @@
             }
           ]
         },
-        "next": [
-          "n_w6s1_stress"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w6s1_stress"
+          }
+        ]
       },
       "_comment_week6": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 WEEK 6: Stress Management \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
       "n_w6s1_stress": {
@@ -6416,10 +6740,21 @@
             }
           ]
         },
-        "next": [
-          "n_w6s2_emotional"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w6s2_emotional"
+          }
+        ]
       },
       "n_w6s2_emotional": {
         "id": "n_w6s2_emotional",
@@ -6436,10 +6771,21 @@
             }
           ]
         },
-        "next": [
-          "n_w7s1_monitoring"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w7s1_monitoring"
+          }
+        ]
       },
       "_comment_week7": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 WEEK 7: Self-Monitoring and Early Warning Signs \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
       "n_w7s1_monitoring": {
@@ -6457,10 +6803,21 @@
             }
           ]
         },
-        "next": [
-          "n_w7s2_course_correct"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w7s2_course_correct"
+          }
+        ]
       },
       "n_w7s2_course_correct": {
         "id": "n_w7s2_course_correct",
@@ -6477,10 +6834,21 @@
             }
           ]
         },
-        "next": [
-          "n_w8s1_longterm"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w8s1_longterm"
+          }
+        ]
       },
       "_comment_week8": "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 WEEK 8: Long-Term Maintenance and Graduation \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
       "n_w8s1_longterm": {
@@ -6498,10 +6866,21 @@
             }
           ]
         },
-        "next": [
-          "n_w8s2_graduation"
-        ],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "condition": "default",
+            "target": "n_w8s2_graduation"
+          }
+        ]
       },
       "n_w8s2_graduation": {
         "id": "n_w8s2_graduation",
@@ -6518,8 +6897,16 @@
             }
           ]
         },
-        "next": [],
-        "requires_response": false
+        "response": {
+          "kind": "acknowledge",
+          "options": [
+            {
+              "value": "CONTINUE",
+              "label": "Continue"
+            }
+          ]
+        },
+        "edges": []
       }
     }
   }
