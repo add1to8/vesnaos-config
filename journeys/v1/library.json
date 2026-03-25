@@ -5756,8 +5756,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w1s2_baseline"
+            "target": "n_w1s2_baseline",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -5781,8 +5784,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w2s1_walking"
+            "target": "n_w2s1_walking",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -5807,8 +5813,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w2s2_stretching"
+            "target": "n_w2s2_stretching",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -5832,8 +5841,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w3s1_bodyweight"
+            "target": "n_w3s1_bodyweight",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -5858,8 +5870,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w3s2_protein"
+            "target": "n_w3s2_protein",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -5883,8 +5898,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w4s1_resistance"
+            "target": "n_w4s1_resistance",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -5909,8 +5927,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w4s2_lean_mass"
+            "target": "n_w4s2_lean_mass",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -5934,8 +5955,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w5s1_routine"
+            "target": "n_w5s1_routine",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -5960,8 +5984,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w5s2_progress"
+            "target": "n_w5s2_progress",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -5985,8 +6012,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w6s1_maintenance"
+            "target": "n_w6s1_maintenance",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6011,8 +6041,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w6s2_celebrate"
+            "target": "n_w6s2_celebrate",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6084,8 +6117,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w1s2_diary"
+            "target": "n_w1s2_diary",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6109,8 +6145,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w2s1_hygiene"
+            "target": "n_w2s1_hygiene",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6135,8 +6174,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w2s2_winddown"
+            "target": "n_w2s2_winddown",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6160,8 +6202,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w3s1_gi_sleep"
+            "target": "n_w3s1_gi_sleep",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6186,8 +6231,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w3s2_relaxation"
+            "target": "n_w3s2_relaxation",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6211,8 +6259,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w4s1_sustain"
+            "target": "n_w4s1_sustain",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6237,8 +6288,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w4s2_doctor"
+            "target": "n_w4s2_doctor",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6310,8 +6364,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w1s2_readiness"
+            "target": "n_w1s2_readiness",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6335,8 +6392,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w2s1_triggers"
+            "target": "n_w2s1_triggers",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6361,8 +6421,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w2s2_highrisk"
+            "target": "n_w2s2_highrisk",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6386,8 +6449,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w3s1_ifthen"
+            "target": "n_w3s1_ifthen",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6412,8 +6478,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w3s2_practice"
+            "target": "n_w3s2_practice",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6437,8 +6506,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w4s1_activity"
+            "target": "n_w4s1_activity",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6463,8 +6535,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w4s2_identity"
+            "target": "n_w4s2_identity",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6488,8 +6563,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w5s1_nutrition"
+            "target": "n_w5s1_nutrition",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6514,8 +6592,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w5s2_portions"
+            "target": "n_w5s2_portions",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6539,8 +6620,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w6s1_stress"
+            "target": "n_w6s1_stress",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6565,8 +6649,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w6s2_emotional"
+            "target": "n_w6s2_emotional",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6590,8 +6677,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w7s1_monitoring"
+            "target": "n_w7s1_monitoring",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6616,8 +6706,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w7s2_course_correct"
+            "target": "n_w7s2_course_correct",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6641,8 +6734,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w8s1_longterm"
+            "target": "n_w8s1_longterm",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
@@ -6667,8 +6763,11 @@
         },
         "edges": [
           {
-            "condition": "default",
-            "target": "n_w8s2_graduation"
+            "target": "n_w8s2_graduation",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
           }
         ]
       },
