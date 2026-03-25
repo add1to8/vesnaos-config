@@ -5752,13 +5752,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -5783,13 +5777,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -5815,13 +5803,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -5846,13 +5828,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -5878,13 +5854,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -5909,13 +5879,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -5941,13 +5905,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -5972,13 +5930,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6004,13 +5956,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6035,13 +5981,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6067,13 +6007,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6098,13 +6032,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": []
       }
@@ -6152,13 +6080,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6183,13 +6105,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6215,13 +6131,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6246,13 +6156,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6278,13 +6182,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6309,13 +6207,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6341,13 +6233,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6372,13 +6258,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": []
       }
@@ -6426,13 +6306,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6457,13 +6331,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6489,13 +6357,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6520,13 +6382,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6552,13 +6408,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6583,13 +6433,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6615,13 +6459,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6646,13 +6484,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6678,13 +6510,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6709,13 +6535,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6741,13 +6561,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6772,13 +6586,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6804,13 +6612,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6835,13 +6637,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6867,13 +6663,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": [
           {
@@ -6898,13 +6688,7 @@
           ]
         },
         "response": {
-          "kind": "acknowledge",
-          "options": [
-            {
-              "value": "CONTINUE",
-              "label": "Continue"
-            }
-          ]
+          "kind": "none"
         },
         "edges": []
       }
