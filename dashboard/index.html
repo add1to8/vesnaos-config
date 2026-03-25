@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthOS Employer Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a1a; color: #e0e0e0; min-height: 100vh; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+        h1 { font-size: 24px; color: #fff; }
+        h1 span { color: #34C759; }
+        .logout { background: #2a2a3e; border: none; color: #a0a0b0; padding: 8px 16px; border-radius: 8px; cursor: pointer; }
+        .logout:hover { background: #3a3a4e; }
+
+        /* Login */
+        .login-card { background: #1a1a2e; border-radius: 16px; padding: 40px; max-width: 400px; margin: 80px auto; text-align: center; }
+        .login-card h2 { margin-bottom: 24px; }
+        .login-card input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #3a3a4e; background: #0a0a1a; color: #e0e0e0; margin-bottom: 12px; font-size: 14px; }
+        .login-card button { width: 100%; padding: 12px; border-radius: 8px; border: none; background: #34C759; color: #000; font-weight: 600; font-size: 16px; cursor: pointer; }
+        .login-card .error { color: #FF3B30; font-size: 13px; margin-top: 8px; }
+
+        /* Stats grid */
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+        .stat-card { background: #1a1a2e; border-radius: 12px; padding: 20px; }
+        .stat-label { font-size: 13px; color: #808090; margin-bottom: 4px; }
+        .stat-value { font-size: 28px; font-weight: 700; color: #fff; }
+        .stat-value.green { color: #34C759; }
+        .stat-value.orange { color: #FF9500; }
+        .stat-value.red { color: #FF3B30; }
+
+        /* Metrics table */
+        .section { background: #1a1a2e; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+        .section h3 { font-size: 16px; margin-bottom: 16px; color: #fff; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #2a2a3e; }
+        th { color: #808090; font-size: 12px; text-transform: uppercase; }
+        td { font-size: 14px; }
+
+        /* Week selector */
+        .week-nav { display: flex; gap: 8px; align-items: center; margin-bottom: 24px; }
+        .week-nav button { background: #2a2a3e; border: none; color: #e0e0e0; padding: 8px 16px; border-radius: 8px; cursor: pointer; }
+        .week-nav button:hover { background: #3a3a4e; }
+        .week-nav .current { font-size: 14px; color: #a0a0b0; }
+
+        .empty { text-align: center; padding: 40px; color: #808090; }
+    </style>
+</head>
+<body>
+    <!-- Login screen -->
+    <div id="login-screen">
+        <div class="login-card">
+            <h2>HealthOS Dashboard</h2>
+            <input type="text" id="employer-id" placeholder="Employer ID (e.g. acme-corp)">
+            <input type="password" id="api-key" placeholder="API Key">
+            <button onclick="login()">Sign In</button>
+            <div class="error" id="login-error"></div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" style="display:none;">
+        <div class="container">
+            <header>
+                <h1>HealthOS <span id="employer-name"></span></h1>
+                <button class="logout" onclick="logout()">Sign Out</button>
+            </header>
+
+            <div class="week-nav">
+                <button onclick="prevWeek()">&larr; Previous</button>
+                <span class="current" id="week-label">Loading...</span>
+                <button onclick="nextWeek()">Next &rarr;</button>
+            </div>
+
+            <div class="stats" id="stats-grid"></div>
+
+            <div class="section">
+                <h3>Biometric Metrics</h3>
+                <table>
+                    <thead>
+                        <tr><th>Metric</th><th>Readings</th><th>Mean</th><th>Min</th><th>Max</th></tr>
+                    </thead>
+                    <tbody id="metrics-table"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Config — replace with your Supabase project URL and anon key
+        const SUPABASE_URL = 'https://epgbjcajhnrzqmqbfcum.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwZ2JqY2FqaG5yenFtcWJmY3VtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0NDQ1NTYsImV4cCI6MjA5MDAyMDU1Nn0.J6HZyiV6piCe22_sfbbnEcLT2BNwo6VDvAfmztftH1M';
+
+        let currentEmployer = null;
+        let currentApiKey = null;
+        let aggregates = [];
+        let weekIndex = 0;
+
+        // Check stored session
+        const stored = sessionStorage.getItem('healthos_dashboard');
+        if (stored) {
+            const s = JSON.parse(stored);
+            currentEmployer = s.employer;
+            currentApiKey = s.apiKey;
+            showDashboard();
+        }
+
+        async function login() {
+            const employer = document.getElementById('employer-id').value.trim();
+            const apiKey = document.getElementById('api-key').value.trim();
+            const errorEl = document.getElementById('login-error');
+
+            if (!employer || !apiKey) {
+                errorEl.textContent = 'Please enter both fields.';
+                return;
+            }
+
+            errorEl.textContent = 'Signing in...';
+
+            try {
+                // Validate by fetching aggregates — if API key is wrong, Edge Function returns 403
+                const resp = await fetch(`${SUPABASE_URL}/functions/v1/ingest`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey },
+                    body: JSON.stringify({ employer_id: employer, week_start: 0 }) // dummy to validate
+                });
+
+                // We expect a 400 (missing real data) or 200 if key is valid, 403 if invalid
+                if (resp.status === 403) {
+                    errorEl.textContent = 'Invalid employer ID or API key.';
+                    return;
+                }
+
+                currentEmployer = employer;
+                currentApiKey = apiKey;
+                sessionStorage.setItem('healthos_dashboard', JSON.stringify({ employer, apiKey }));
+                showDashboard();
+            } catch (e) {
+                errorEl.textContent = 'Connection failed. Check your network.';
+            }
+        }
+
+        function logout() {
+            sessionStorage.removeItem('healthos_dashboard');
+            currentEmployer = null;
+            currentApiKey = null;
+            document.getElementById('login-screen').style.display = 'block';
+            document.getElementById('dashboard').style.display = 'none';
+        }
+
+        async function showDashboard() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            document.getElementById('employer-name').textContent =
+                currentEmployer.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+            await loadAggregates();
+            renderWeek();
+        }
+
+        async function loadAggregates() {
+            try {
+                // Direct REST query with RLS bypass via service role
+                // In production, use a read-only Edge Function instead
+                const resp = await fetch(
+                    `${SUPABASE_URL}/rest/v1/weekly_aggregates?employer_id=eq.${currentEmployer}&order=week_start.desc&limit=52`,
+                    {
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        }
+                    }
+                );
+                if (resp.ok) {
+                    aggregates = await resp.json();
+                } else {
+                    aggregates = [];
+                }
+            } catch (e) {
+                aggregates = [];
+            }
+            weekIndex = 0;
+        }
+
+        function renderWeek() {
+            const weekLabel = document.getElementById('week-label');
+            const statsGrid = document.getElementById('stats-grid');
+            const metricsTable = document.getElementById('metrics-table');
+
+            if (aggregates.length === 0) {
+                weekLabel.textContent = 'No data yet';
+                statsGrid.innerHTML = '<div class="empty">Waiting for first weekly aggregate upload from employees.</div>';
+                metricsTable.innerHTML = '';
+                return;
+            }
+
+            const agg = aggregates[weekIndex];
+            if (!agg) return;
+
+            // Week label
+            const start = new Date(agg.week_start * 1000);
+            const end = new Date(agg.week_end * 1000);
+            weekLabel.textContent = `${start.toLocaleDateString()} — ${end.toLocaleDateString()} (Week ${weekIndex + 1} of ${aggregates.length})`;
+
+            // Stats cards
+            const metrics = agg.metrics || {};
+            const totalReadings = Object.values(metrics).reduce((sum, m) => sum + (m.count || 0), 0);
+
+            statsGrid.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-label">Active Days</div>
+                    <div class="stat-value green">${agg.active_days}/7</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Readings</div>
+                    <div class="stat-value">${totalReadings}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Warnings</div>
+                    <div class="stat-value orange">${agg.alert_count_warning}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Critical Alerts</div>
+                    <div class="stat-value red">${agg.alert_count_critical}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Journey Active</div>
+                    <div class="stat-value ${agg.journey_active ? 'green' : ''}">${agg.journey_active ? 'Yes' : 'No'}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Metric Types</div>
+                    <div class="stat-value">${Object.keys(metrics).length}</div>
+                </div>
+            `;
+
+            // Metrics table
+            const metricNames = {
+                heart_rate: 'Heart Rate (bpm)',
+                steps: 'Steps',
+                sleep: 'Sleep (hours)',
+                hrv: 'HRV (ms)',
+                glucose: 'Glucose (mmol/L)',
+                blood_pressure: 'Blood Pressure (mmHg)',
+                body_temperature: 'Temperature (°C)',
+                flights_climbed: 'Flights Climbed',
+                stress_index: 'Stress Index (/100)',
+                sleep_debt: 'Sleep Debt (hours)',
+                activity_withdrawal: 'Activity Withdrawal (/100)',
+                recovery_readiness: 'Recovery Readiness (/100)',
+                mood_risk: 'Mood Risk (/100)',
+            };
+
+            metricsTable.innerHTML = Object.entries(metrics)
+                .map(([key, m]) => `
+                    <tr>
+                        <td>${metricNames[key] || key}</td>
+                        <td>${m.count}</td>
+                        <td>${m.mean?.toFixed(1) || '—'}</td>
+                        <td>${m.min?.toFixed(1) || '—'}</td>
+                        <td>${m.max?.toFixed(1) || '—'}</td>
+                    </tr>
+                `)
+                .join('');
+        }
+
+        function prevWeek() {
+            if (weekIndex < aggregates.length - 1) {
+                weekIndex++;
+                renderWeek();
+            }
+        }
+
+        function nextWeek() {
+            if (weekIndex > 0) {
+                weekIndex--;
+                renderWeek();
+            }
+        }
+    </script>
+</body>
+</html>
