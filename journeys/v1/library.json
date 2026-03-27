@@ -5905,7 +5905,7 @@
         },
         "edges": [
           {
-            "target": "n_w3s2_squats",
+            "target": "n_w3s2_protein",
             "condition": {
               "on": "response_match",
               "value": "READY"
@@ -5986,7 +5986,7 @@
             "priority": 1
           },
           {
-            "target": "n_w4s2_protein",
+            "target": "n_w4s2_lean_mass",
             "condition": {
               "on": "consumed"
             },
@@ -6191,7 +6191,7 @@
         },
         "edges": [
           {
-            "target": "n_w3s2_squats",
+            "target": "n_w3s2_protein",
             "condition": {
               "on": "consumed"
             },
@@ -6224,7 +6224,7 @@
         },
         "edges": [
           {
-            "target": "n_w4s2_protein",
+            "target": "n_w4s2_lean_mass",
             "condition": {
               "on": "consumed"
             },
@@ -7048,7 +7048,7 @@
         },
         "edges": [
           {
-            "target": "n_w7s2_correction",
+            "target": "n_w7s2_course_correct",
             "condition": {
               "on": "response_match",
               "value": [
