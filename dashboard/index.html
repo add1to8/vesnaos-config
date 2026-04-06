@@ -249,7 +249,7 @@
             // Week label
             const start = new Date(agg.week_start * 1000);
             const end = new Date(agg.week_end * 1000);
-            weekLabel.textContent = `${start.toLocaleDateString()} — ${end.toLocaleDateString()} (Week ${weekIndex + 1} of ${aggregates.length})`;
+            weekLabel.textContent = `${start.toLocaleDateString()} — ${end.toLocaleDateString()}`;
 
             // Cohort check
             if (!agg.cohort_met) {
