@@ -45,6 +45,20 @@
         .week-nav .current { font-size: 14px; color: #a0a0b0; }
 
         .empty { text-align: center; padding: 40px; color: #808090; }
+
+        /* Trend charts */
+        .trends { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 16px; }
+        .trend-card { background: #1a1a2e; border-radius: 12px; padding: 16px; }
+        .trend-card h4 { font-size: 13px; color: #808090; margin-bottom: 4px; }
+        .trend-card .trend-value { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .trend-card .trend-value .trend-arrow { font-size: 14px; margin-left: 4px; }
+        .trend-card .trend-value .trend-arrow.up { color: #34C759; }
+        .trend-card .trend-value .trend-arrow.down { color: #FF3B30; }
+        .trend-card .trend-value .trend-arrow.flat { color: #808090; }
+        .trend-card svg { display: block; width: 100%; height: 60px; }
+        .trend-line { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .trend-area { opacity: 0.1; }
+        .trend-dot { r: 3; }
     </style>
 </head>
 <body>
@@ -76,7 +90,12 @@
             <div class="stats" id="stats-grid"></div>
 
             <div class="section">
-                <h3>Biometric Metrics</h3>
+                <h3>Trends (All Weeks)</h3>
+                <div class="trends" id="trends-grid"></div>
+            </div>
+
+            <div class="section">
+                <h3>Biometric Metrics (Selected Week)</h3>
                 <table>
                     <thead>
                         <tr><th>Metric</th><th>Readings</th><th>Mean</th><th>Min</th><th>Max</th></tr>
@@ -97,6 +116,21 @@
         let aggregates = [];
         let weekIndex = 0;
         let minCohort = 25;
+        const metricNames = {
+            heart_rate: 'Heart Rate (bpm)',
+            steps: 'Steps',
+            sleep: 'Sleep (hours)',
+            hrv: 'HRV (ms)',
+            glucose: 'Glucose (mmol/L)',
+            blood_pressure: 'Blood Pressure (mmHg)',
+            body_temperature: 'Temperature (°C)',
+            flights_climbed: 'Flights Climbed',
+            stress_index: 'Stress Index (/100)',
+            sleep_debt: 'Sleep Debt (hours)',
+            activity_withdrawal: 'Activity Withdrawal (/100)',
+            recovery_readiness: 'Recovery Readiness (/100)',
+            mood_risk: 'Mood Risk (/100)',
+        };
 
         // Check stored session
         const stored = sessionStorage.getItem('healthos_dashboard');
@@ -164,6 +198,7 @@
                 currentEmployer.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
             await loadAggregates();
+            renderTrends();
             renderWeek();
         }
 
@@ -267,21 +302,6 @@
             `;
 
             // Metrics table
-            const metricNames = {
-                heart_rate: 'Heart Rate (bpm)',
-                steps: 'Steps',
-                sleep: 'Sleep (hours)',
-                hrv: 'HRV (ms)',
-                glucose: 'Glucose (mmol/L)',
-                blood_pressure: 'Blood Pressure (mmHg)',
-                body_temperature: 'Temperature (°C)',
-                flights_climbed: 'Flights Climbed',
-                stress_index: 'Stress Index (/100)',
-                sleep_debt: 'Sleep Debt (hours)',
-                activity_withdrawal: 'Activity Withdrawal (/100)',
-                recovery_readiness: 'Recovery Readiness (/100)',
-                mood_risk: 'Mood Risk (/100)',
-            };
 
             metricsTable.innerHTML = Object.entries(metrics)
                 .map(([key, m]) => `
@@ -294,6 +314,80 @@
                     </tr>
                 `)
                 .join('');
+        }
+
+        function renderTrends() {
+            const grid = document.getElementById('trends-grid');
+            if (aggregates.length < 2) {
+                grid.innerHTML = '<div class="empty" style="grid-column:1/-1">Need at least 2 weeks of data for trends.</div>';
+                return;
+            }
+
+            // Collect all metric keys across all weeks
+            const allMetrics = new Set();
+            aggregates.forEach(a => Object.keys(a.metrics || {}).forEach(k => allMetrics.add(k)));
+
+            // Key metrics to show trends for (skip rare ones)
+            const trendMetrics = ['heart_rate', 'steps', 'sleep', 'hrv', 'stress_index', 'sleep_debt',
+                'activity_withdrawal', 'recovery_readiness', 'mood_risk'];
+            const metricsToShow = trendMetrics.filter(m => allMetrics.has(m));
+
+            const colors = {
+                heart_rate: '#FF6B6B', steps: '#4ECDC4', sleep: '#6C5CE7', hrv: '#00CEC9',
+                stress_index: '#E17055', sleep_debt: '#FDCB6E', activity_withdrawal: '#FF9500',
+                recovery_readiness: '#34C759', mood_risk: '#A29BFE',
+                glucose: '#FF6348', blood_pressure: '#5F27CD', body_temperature: '#FF9FF3',
+                flights_climbed: '#54A0FF',
+            };
+
+            grid.innerHTML = metricsToShow.map(metricKey => {
+                // Gather weekly means in chronological order (aggregates are newest-first)
+                const weeks = [...aggregates].reverse();
+                const points = weeks.map(a => a.metrics?.[metricKey]?.mean ?? null).filter(v => v !== null);
+                if (points.length < 2) return '';
+
+                const name = metricNames[metricKey] || metricKey;
+                const color = colors[metricKey] || '#808090';
+                const latest = points[points.length - 1];
+                const prev = points[points.length - 2];
+                const pctChange = prev > 0 ? ((latest - prev) / prev * 100) : 0;
+
+                // Invert direction for "lower is better" metrics
+                const lowerIsBetter = ['stress_index', 'sleep_debt', 'activity_withdrawal', 'mood_risk', 'heart_rate'].includes(metricKey);
+                const improving = lowerIsBetter ? pctChange < -2 : pctChange > 2;
+                const worsening = lowerIsBetter ? pctChange > 2 : pctChange < -2;
+                const arrowClass = improving ? 'up' : worsening ? 'down' : 'flat';
+                const arrow = improving ? '↑' : worsening ? '↓' : '→';
+                const arrowLabel = improving ? 'improving' : worsening ? 'worsening' : 'stable';
+
+                // SVG sparkline
+                const min = Math.min(...points) * 0.9;
+                const max = Math.max(...points) * 1.1 || 1;
+                const w = 260, h = 60, pad = 4;
+                const xStep = (w - pad * 2) / (points.length - 1);
+                const yScale = (v) => h - pad - ((v - min) / (max - min)) * (h - pad * 2);
+
+                const linePoints = points.map((v, i) => `${pad + i * xStep},${yScale(v)}`).join(' ');
+                const areaPoints = linePoints + ` ${pad + (points.length - 1) * xStep},${h} ${pad},${h}`;
+                const dots = points.map((v, i) =>
+                    `<circle class="trend-dot" cx="${pad + i * xStep}" cy="${yScale(v)}" fill="${color}"/>`
+                ).join('');
+
+                return `
+                    <div class="trend-card">
+                        <h4>${name}</h4>
+                        <div class="trend-value">
+                            ${latest.toFixed(1)}
+                            <span class="trend-arrow ${arrowClass}" title="${arrowLabel} (${pctChange > 0 ? '+' : ''}${pctChange.toFixed(1)}%)">${arrow}</span>
+                        </div>
+                        <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
+                            <polygon class="trend-area" points="${areaPoints}" fill="${color}"/>
+                            <polyline class="trend-line" points="${linePoints}" stroke="${color}"/>
+                            ${dots}
+                        </svg>
+                    </div>
+                `;
+            }).join('');
         }
 
         function prevWeek() {
