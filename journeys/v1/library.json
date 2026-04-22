@@ -7184,5 +7184,2058 @@
         ]
       }
     }
+  },
+  {
+    "id": "jrn_psoriasis_illness_perceptions_v2",
+    "version": "2.0",
+    "name": "Psoriasis illness perceptions \u2014 assessment journey",
+    "description": "Assessment of illness perceptions and psoriasis-specific stress as a gateway to a matched CBT / ACT / self-compassion intervention",
+    "entry": "n_welcome",
+    "metadata": {
+      "created_at": "2026-04-20",
+      "updated_at": "2026-04-20",
+      "author": "Intervengine",
+      "clinical_ref": "Leventhal Common Sense Model (CSM) \u00b7 Brief Illness Perception Questionnaire (Broadbent 2006) \u00b7 Psoriasis Life Stress Inventory (Gupta & Gupta 1995) \u00b7 Cognitive Behavioural Therapy (Beck; Fortune et al. 2002 in psoriasis) \u00b7 Acceptance and Commitment Therapy (Hayes, Strosahl & Wilson) \u00b7 Self-compassion (Neff; Gilbert)",
+      "duration_weeks": 3,
+      "tags": [
+        "psoriasis",
+        "dermatology",
+        "illness-perceptions",
+        "csm",
+        "cbt",
+        "act",
+        "self-compassion",
+        "assessment-gateway"
+      ],
+      "screening": "phq9",
+      "additional_proms": [
+        "plsi"
+      ],
+      "audience": "Adults with moderate-to-severe psoriasis on systemic therapy or biologics"
+    },
+    "schedule": {
+      "total_weeks": 3,
+      "sessions_per_week": 2,
+      "preferred_spacing_hours": 48,
+      "user_pace_override_node": "n_pref_pace",
+      "user_reminder_pref_node": "n_pref_reminder"
+    },
+    "nodes": {
+      "n_welcome": {
+        "id": "n_welcome",
+        "type": "intervention",
+        "label": "Welcome",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 1,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800",
+              "alt": "Soft natural light through trees \u2014 placeholder, curate before deployment"
+            },
+            {
+              "type": "text",
+              "body": "**Welcome.**\n\nLiving with moderate-to-severe psoriasis is physical, yes \u2014 but it also shapes how you think and feel about yourself, your treatment, and your future. Over the next three weeks or so, we're going to gently map that inner landscape together.\n\nThis isn't about fixing your skin. It's about understanding what psoriasis *means* to you right now \u2014 because that understanding is itself a lever for how well you cope, how you engage with treatment, and how much headspace the condition takes up.\n\nMost sessions are short \u2014 3 to 8 minutes. You'll answer a few questions, see a personalised profile of how psoriasis sits with you, try a short coping approach that matches what you share, and practise it with a simple tool you can keep using afterwards.\n\nNothing here replaces your dermatologist or GP. It sits alongside."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_why_perceptions",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_why_perceptions": {
+        "id": "n_why_perceptions",
+        "type": "intervention",
+        "label": "Why perceptions matter",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**Why what you think about psoriasis matters.**\n\nResearch in skin conditions shows that two people with identical disease severity can have very different lives \u2014 and a lot of that difference comes down to *illness perceptions*. What you believe about how long it will last, how much control you have, what caused it, how much it defines you emotionally \u2014 all of that shapes your mood, your adherence to treatment, and your quality of life.\n\nWe use a well-validated framework called the **Common Sense Model** to make this visible. Eight quick questions get us most of the way there."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_prefs_intro",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_prefs_intro": {
+        "id": "n_prefs_intro",
+        "type": "intervention",
+        "label": "Your journey, your way",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**Your journey, your way.**\n\nBefore we start, two quick choices to make this fit your life. You can change either of these later from your settings \u2014 they're a starting point, not a contract."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_pref_pace",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_pref_pace": {
+        "id": "n_pref_pace",
+        "type": "intervention",
+        "label": "Pace preference",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**How would you like to pace yourself?**\n\nThere's no right answer \u2014 pick what feels sustainable.\n\n- **Quick** \u2014 1 to 2 days between sessions. Get through it focused.\n- **Steady** \u2014 2 to 4 days between sessions. The default.\n- **Gentle** \u2014 about a week between sessions. Plenty of breathing room."
+        },
+        "response": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "QUICK",
+              "label": "Quick"
+            },
+            {
+              "value": "STEADY",
+              "label": "Steady"
+            },
+            {
+              "value": "GENTLE",
+              "label": "Gentle"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "target": "n_pref_reminder",
+            "condition": {
+              "on": "response_match",
+              "value": "QUICK"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_pref_reminder",
+            "condition": {
+              "on": "response_match",
+              "value": "STEADY"
+            },
+            "priority": 2
+          },
+          {
+            "target": "n_pref_reminder",
+            "condition": {
+              "on": "response_match",
+              "value": "GENTLE"
+            },
+            "priority": 3
+          }
+        ]
+      },
+      "n_pref_reminder": {
+        "id": "n_pref_reminder",
+        "type": "intervention",
+        "label": "Reminder preference",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**And when suits you for check-ins?**\n\nWhen the next session is ready, we'll send a single gentle nudge \u2014 or none, if you'd rather we didn't.\n\n- **Morning** \u2014 early in your day\n- **Evening** \u2014 winding down\n- **No reminders** \u2014 I'll come back when I'm ready"
+        },
+        "response": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "MORNING",
+              "label": "Morning"
+            },
+            {
+              "value": "EVENING",
+              "label": "Evening"
+            },
+            {
+              "value": "NONE",
+              "label": "No reminders"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "target": "n_bipq_intro",
+            "condition": {
+              "on": "response_match",
+              "value": "MORNING"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_bipq_intro",
+            "condition": {
+              "on": "response_match",
+              "value": "EVENING"
+            },
+            "priority": 2
+          },
+          {
+            "target": "n_bipq_intro",
+            "condition": {
+              "on": "response_match",
+              "value": "NONE"
+            },
+            "priority": 3
+          }
+        ]
+      },
+      "n_bipq_intro": {
+        "id": "n_bipq_intro",
+        "type": "intervention",
+        "label": "B-IPQ intro",
+        "deliver_after_hours": 48,
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "**A short map-making exercise.**\n\nI'll ask you eight quick scale questions about how psoriasis sits with you, plus five about what you believe contributes to it. There are no right answers \u2014 the value is in your honest read right now. Takes about 4 minutes."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_bipq_consequences",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_bipq_consequences": {
+        "id": "n_bipq_consequences",
+        "type": "intervention",
+        "label": "B-IPQ \u00b7 Consequences",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "How much does psoriasis affect your life overall?"
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 10,
+          "labels": {
+            "0": "no effect at all",
+            "10": "severely affects my life"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_bipq_timeline",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_bipq_timeline": {
+        "id": "n_bipq_timeline",
+        "type": "intervention",
+        "label": "B-IPQ \u00b7 Timeline",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "How long do you think your psoriasis will continue?"
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 10,
+          "labels": {
+            "0": "a very short time",
+            "10": "forever"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_bipq_personal_control",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_bipq_personal_control": {
+        "id": "n_bipq_personal_control",
+        "type": "intervention",
+        "label": "B-IPQ \u00b7 Personal control",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "How much control do *you* feel you have over your psoriasis?"
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 10,
+          "labels": {
+            "0": "no control",
+            "10": "complete control"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_bipq_treatment_control",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_bipq_treatment_control": {
+        "id": "n_bipq_treatment_control",
+        "type": "intervention",
+        "label": "B-IPQ \u00b7 Treatment control",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "How much do you think your current treatment helps?"
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 10,
+          "labels": {
+            "0": "not at all",
+            "10": "extremely helpful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_bipq_identity",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_bipq_identity": {
+        "id": "n_bipq_identity",
+        "type": "intervention",
+        "label": "B-IPQ \u00b7 Identity / symptoms",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "How much do you experience day-to-day symptoms? (itch, soreness, visible plaques, scale, fatigue)"
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 10,
+          "labels": {
+            "0": "no symptoms",
+            "10": "many severe symptoms"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_bipq_concern",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_bipq_concern": {
+        "id": "n_bipq_concern",
+        "type": "intervention",
+        "label": "B-IPQ \u00b7 Concern",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "How concerned are you about your psoriasis?"
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 10,
+          "labels": {
+            "0": "not concerned",
+            "10": "extremely concerned"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_bipq_coherence",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_bipq_coherence": {
+        "id": "n_bipq_coherence",
+        "type": "intervention",
+        "label": "B-IPQ \u00b7 Coherence",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "How well do you feel you understand your psoriasis \u2014 what it is, why it happens, how treatments work?"
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 10,
+          "labels": {
+            "0": "don't understand at all",
+            "10": "understand very clearly"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_bipq_emotional",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_bipq_emotional": {
+        "id": "n_bipq_emotional",
+        "type": "intervention",
+        "label": "B-IPQ \u00b7 Emotional response",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "How much does psoriasis affect you emotionally \u2014 mood, self-image, worry, frustration, shame?"
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 10,
+          "labels": {
+            "0": "not at all",
+            "10": "extremely affected"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_bipq_cause_intro",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_bipq_cause_intro": {
+        "id": "n_bipq_cause_intro",
+        "type": "intervention",
+        "label": "Causes intro",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "**What do you think contributes to your psoriasis?**\n\nFive short questions about causes. Your beliefs here matter \u2014 they shape what you try and what you avoid."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_bipq_cause_stress",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_bipq_cause_stress": {
+        "id": "n_bipq_cause_stress",
+        "type": "intervention",
+        "label": "Cause \u00b7 stress",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "How much do you believe **stress** contributes to your psoriasis?"
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 10,
+          "labels": {
+            "0": "not at all",
+            "10": "entirely"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_bipq_cause_immune",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_bipq_cause_immune": {
+        "id": "n_bipq_cause_immune",
+        "type": "intervention",
+        "label": "Cause \u00b7 immune system",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "How much do you believe **your immune system** is the driver?"
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 10,
+          "labels": {
+            "0": "not at all",
+            "10": "entirely"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_bipq_cause_genetics",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_bipq_cause_genetics": {
+        "id": "n_bipq_cause_genetics",
+        "type": "intervention",
+        "label": "Cause \u00b7 genetics",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "How much do you believe **genetics / family history** plays a part?"
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 10,
+          "labels": {
+            "0": "not at all",
+            "10": "entirely"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_bipq_cause_lifestyle",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_bipq_cause_lifestyle": {
+        "id": "n_bipq_cause_lifestyle",
+        "type": "intervention",
+        "label": "Cause \u00b7 lifestyle",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "How much do you believe **diet, alcohol, or weight** contribute?"
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 10,
+          "labels": {
+            "0": "not at all",
+            "10": "entirely"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_bipq_cause_triggers",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_bipq_cause_triggers": {
+        "id": "n_bipq_cause_triggers",
+        "type": "intervention",
+        "label": "Cause \u00b7 external triggers",
+        "deliver_after_hours": 0,
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "How much do you believe **external triggers** matter (weather, infections, skin injury, hormones)?"
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 10,
+          "labels": {
+            "0": "not at all",
+            "10": "entirely"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_intro",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_intro": {
+        "id": "n_plsi_intro",
+        "type": "intervention",
+        "label": "PLSI baseline intro",
+        "deliver_after_hours": 48,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**A second short measure \u2014 about everyday stress.**\n\nThe first set of questions was about how you *think* about psoriasis. This next set is about everyday situations that can feel stressful when you have it. Fifteen quick items, each rated 0 to 3. Takes about 4 minutes.\n\nWhy we're doing both: the way you think about your condition and the situations that actually stress you out are related but not the same \u2014 and we want to know about both. We'll re-check the stress side again later in the journey to see what shifts."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_plsi_q1",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_q1": {
+        "id": "n_plsi_q1",
+        "type": "intervention",
+        "label": "PLSI \u00b7 anticipating reactions",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "Anticipating people's reactions to your skin."
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 3,
+          "labels": {
+            "0": "not at all stressful",
+            "3": "severely stressful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_q2",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_q2": {
+        "id": "n_plsi_q2",
+        "type": "intervention",
+        "label": "PLSI \u00b7 strangers",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "Encountering strangers (in shops, on transport, in waiting rooms)."
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 3,
+          "labels": {
+            "0": "not at all stressful",
+            "3": "severely stressful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_q3",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_q3": {
+        "id": "n_plsi_q3",
+        "type": "intervention",
+        "label": "PLSI \u00b7 public events",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "Going to public events such as parties, weddings, restaurants."
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 3,
+          "labels": {
+            "0": "not at all stressful",
+            "3": "severely stressful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_q4",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_q4": {
+        "id": "n_plsi_q4",
+        "type": "intervention",
+        "label": "PLSI \u00b7 exposed clothing",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "Wearing summer clothing \u2014 shorts, sleeveless tops, swimwear."
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 3,
+          "labels": {
+            "0": "not at all stressful",
+            "3": "severely stressful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_q5",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_q5": {
+        "id": "n_plsi_q5",
+        "type": "intervention",
+        "label": "PLSI \u00b7 pools and beaches",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "Going to a beach, swimming pool, or any setting where skin is on show."
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 3,
+          "labels": {
+            "0": "not at all stressful",
+            "3": "severely stressful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_q6",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_q6": {
+        "id": "n_plsi_q6",
+        "type": "intervention",
+        "label": "PLSI \u00b7 sexual activity",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "Sexual or intimate activity."
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 3,
+          "labels": {
+            "0": "not at all stressful",
+            "3": "severely stressful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_q7",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_q7": {
+        "id": "n_plsi_q7",
+        "type": "intervention",
+        "label": "PLSI \u00b7 being asked about it",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "People asking you about your skin condition."
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 3,
+          "labels": {
+            "0": "not at all stressful",
+            "3": "severely stressful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_q8",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_q8": {
+        "id": "n_plsi_q8",
+        "type": "intervention",
+        "label": "PLSI \u00b7 talking about psoriasis",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "Talking about your psoriasis with friends, family, or colleagues."
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 3,
+          "labels": {
+            "0": "not at all stressful",
+            "3": "severely stressful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_q9",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_q9": {
+        "id": "n_plsi_q9",
+        "type": "intervention",
+        "label": "PLSI \u00b7 friction at home",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "Friction or disagreements with people you live with that involve your psoriasis."
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 3,
+          "labels": {
+            "0": "not at all stressful",
+            "3": "severely stressful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_q10",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_q10": {
+        "id": "n_plsi_q10",
+        "type": "intervention",
+        "label": "PLSI \u00b7 sport and exercise",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "Taking part in sport, exercise, or group fitness."
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 3,
+          "labels": {
+            "0": "not at all stressful",
+            "3": "severely stressful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_q11",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_q11": {
+        "id": "n_plsi_q11",
+        "type": "intervention",
+        "label": "PLSI \u00b7 medical appointments",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "Going to medical appointments related to your skin."
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 3,
+          "labels": {
+            "0": "not at all stressful",
+            "3": "severely stressful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_q12",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_q12": {
+        "id": "n_plsi_q12",
+        "type": "intervention",
+        "label": "PLSI \u00b7 concern about scarring",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "Concern about scarring or permanent skin damage."
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 3,
+          "labels": {
+            "0": "not at all stressful",
+            "3": "severely stressful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_q13",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_q13": {
+        "id": "n_plsi_q13",
+        "type": "intervention",
+        "label": "PLSI \u00b7 concern about progression",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "Concern about your skin getting worse over time."
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 3,
+          "labels": {
+            "0": "not at all stressful",
+            "3": "severely stressful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_q14",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_q14": {
+        "id": "n_plsi_q14",
+        "type": "intervention",
+        "label": "PLSI \u00b7 concern about serious illness",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "Concern that your psoriasis means a more serious health problem."
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 3,
+          "labels": {
+            "0": "not at all stressful",
+            "3": "severely stressful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_q15",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_q15": {
+        "id": "n_plsi_q15",
+        "type": "intervention",
+        "label": "PLSI \u00b7 being touched",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "Being physically touched \u2014 by a partner, a healthcare professional, or in a haircut, massage, or similar setting."
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 3,
+          "labels": {
+            "0": "not at all stressful",
+            "3": "severely stressful"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_plsi_baseline_signpost",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_baseline_signpost": {
+        "id": "n_plsi_baseline_signpost",
+        "type": "intervention",
+        "label": "Stress baseline acknowledgement",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "*(Conditional content \u2014 platform applies one of three responses based on the PLSI total score it has just computed.)*\n\n**If total \u2264 15 (low stress):**\nThank you. Your responses suggest psoriasis isn't generating a lot of day-to-day stress at the moment \u2014 which is genuinely worth noticing. We'll still go through the rest of the programme, because the perception map matters even when stress is low.\n\n**If total 16\u201330 (moderate stress):**\nThank you. Your responses suggest psoriasis is generating real but manageable stress in your life. That's the most common pattern. The taster and tool we'll get to next will give you something concrete to work with.\n\n**If total \u2265 31 (high stress):**\nThank you. Your responses suggest psoriasis is generating a lot of day-to-day stress at the moment. That's significant, and worth naming. The next sessions are designed to give you something practical, but please also know: the British Association of Dermatologists, Psoriasis UK, and the National Psoriasis Foundation all have helplines, and your GP or dermatology team can refer you to specialist psychodermatology services if available in your area."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_profile_feedback",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_profile_feedback": {
+        "id": "n_profile_feedback",
+        "type": "intervention",
+        "label": "Your profile",
+        "deliver_after_hours": 48,
+        "week": 2,
+        "session": 2,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
+              "alt": "Calm landscape \u2014 placeholder, curate before deployment"
+            },
+            {
+              "type": "text",
+              "body": "**Your illness perception profile.**\n\nHere's how psoriasis currently sits with you, drawn from your answers across both measures.\n\n**How you see your psoriasis (B-IPQ)**\n\n- Impact on life: {{journey_choice_n_bipq_consequences}}/10\n- How long you think it will last: {{journey_choice_n_bipq_timeline}}/10\n- Your sense of personal control: {{journey_choice_n_bipq_personal_control}}/10\n- Belief in your treatment: {{journey_choice_n_bipq_treatment_control}}/10\n- Day-to-day symptoms: {{journey_choice_n_bipq_identity}}/10\n- Level of concern: {{journey_choice_n_bipq_concern}}/10\n- Understanding of the condition: {{journey_choice_n_bipq_coherence}}/10\n- Emotional impact: {{journey_choice_n_bipq_emotional}}/10\n\n**Lived stress right now (PLSI total): {{plsi_baseline_total}}/45**\n\nA few things worth naming:\n\n- Timeline scores tend to be high in moderate-to-severe psoriasis \u2014 and that's *accurate*, not a distortion. Psoriasis is chronic. The work isn't to believe otherwise; it's to build a life that accommodates it.\n- High emotional impact is very common and often under-acknowledged in dermatology appointments. It's not 'making a fuss'.\n- If your personal control score is lower than your treatment control score, that's actually a coherent picture for someone on biologics \u2014 your treatment is doing heavy lifting. The question becomes: what's left for *you* to influence?\n\nNext, we'll try a short taster of one coping approach. Four are available; you choose which resonates most. Then we'll practise it with a simple tool."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_mood_check",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_mood_check": {
+        "id": "n_mood_check",
+        "type": "intervention",
+        "label": "Safeguarding gate",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": ""
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_pause_and_steady",
+            "condition": {
+              "on": "biometric_gate",
+              "metric": "mood_risk",
+              "operator": "gt",
+              "threshold": 60.0
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_taster_router",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_pause_and_steady": {
+        "id": "n_pause_and_steady",
+        "type": "intervention",
+        "label": "Pause and steady",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "**Before we go further.**\n\nYour wellness indicators suggest you're carrying a lot right now. That's worth pausing for \u2014 not because anything is wrong with going on, but because doing this work from a more steady place tends to land better.\n\n**A 60-second practice:**\n\n1. Notice five things you can see around you.\n2. Notice four things you can hear.\n3. Take three slower breaths \u2014 in through the nose, slower out through the mouth.\n\nIf distress is heavy and persistent, please reach out to someone you trust, or your GP. You don't have to carry this alone.\n\nWhen you're ready, we'll continue."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_taster_router",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_taster_router": {
+        "id": "n_taster_router",
+        "type": "intervention",
+        "label": "Taster router",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "**Which of these feels most useful to try first?**\n\nBased on what you shared, any of these could help \u2014 but you know yourself best.\n\n- **A) Ease the emotional load** \u2014 if shame, worry, or self-criticism is heavy\n- **B) Make peace with what can't be changed** \u2014 if the chronic nature is the hardest part\n- **C) Examine the worry thoughts** \u2014 if your mind runs to worst cases\n- **D) Understand the condition better** \u2014 if it still feels confusing or random"
+        },
+        "response": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "A",
+              "label": "Ease the emotional load"
+            },
+            {
+              "value": "B",
+              "label": "Make peace with what can't be changed"
+            },
+            {
+              "value": "C",
+              "label": "Examine the worry thoughts"
+            },
+            {
+              "value": "D",
+              "label": "Understand the condition better"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "target": "n_taster_selfcomp",
+            "condition": {
+              "on": "response_match",
+              "value": "A"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_taster_act",
+            "condition": {
+              "on": "response_match",
+              "value": "B"
+            },
+            "priority": 2
+          },
+          {
+            "target": "n_taster_cbt",
+            "condition": {
+              "on": "response_match",
+              "value": "C"
+            },
+            "priority": 3
+          },
+          {
+            "target": "n_taster_psychoed",
+            "condition": {
+              "on": "response_match",
+              "value": "D"
+            },
+            "priority": 4
+          }
+        ]
+      },
+      "n_taster_selfcomp": {
+        "id": "n_taster_selfcomp",
+        "type": "intervention",
+        "label": "Taster A \u00b7 Self-compassion",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "**A self-compassion practice for skin that's flaring.**\n\nMost people with psoriasis talk to themselves more harshly than they'd ever talk to a friend with the same condition. This is a 2-minute practice drawn from Kristin Neff's work.\n\n1. **Acknowledge.** Place a hand where your skin feels most present right now. Say inwardly: *'This is a moment of difficulty.'*\n2. **Normalise.** *'Psoriasis affects over 100 million people. I'm not the only one carrying this.'*\n3. **Offer kindness.** *'May I be kind to myself today. May I give myself what I need.'*\n\nShame is the emotion self-compassion directly counters. You don't have to feel different about your skin \u2014 just softer toward the person living in it.\n\nNext session, we'll turn this into something you can carry with you."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_tool_selfcomp_intro",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_taster_act": {
+        "id": "n_taster_act",
+        "type": "intervention",
+        "label": "Taster B \u00b7 ACT",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "**The unwelcome passenger.**\n\nImagine you're driving a bus toward something that matters \u2014 your family, your work, a relationship, your sense of who you are. Psoriasis is a passenger on the bus. It's loud, it complains, sometimes it shouts that you should pull over.\n\nYou can't kick it off. That's the deal with chronic conditions. But you also don't have to stop driving. You can let the passenger yell while you keep going toward the stop *you* chose.\n\nNext session, we'll turn this into something practical \u2014 a small ladder you can build that takes you toward what matters, even on loud passenger days."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_tool_act_intro",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_taster_cbt": {
+        "id": "n_taster_cbt",
+        "type": "intervention",
+        "label": "Taster C \u00b7 CBT",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "**Catching a catastrophic thought.**\n\nWhen consequences feel huge, the mind often runs ahead. A thought like *'People will stare and judge me'* becomes felt as fact.\n\nThe CBT approach is simple: catch the thought, examine it, and ask whether it's the only way to read the situation.\n\nNext session, we'll turn this into a tool you can actually use \u2014 a simple thought record you can return to whenever a worry takes hold."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_tool_cbt_intro",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_taster_psychoed": {
+        "id": "n_taster_psychoed",
+        "type": "intervention",
+        "label": "Taster D \u00b7 Psychoeducation",
+        "deliver_after_hours": 0,
+        "week": 2,
+        "session": 2,
+        "content": {
+          "type": "text",
+          "body": "**What psoriasis actually is.**\n\nPsoriasis is a chronic immune-mediated condition. Your immune system is sending out signals (particularly IL-17 and IL-23) that make skin cells turn over roughly 10\u00d7 faster than normal \u2014 in days rather than weeks. That's what produces the plaques.\n\nThree things worth knowing:\n\n- **It's not contagious, and it's not caused by poor hygiene.** Anyone who suggests otherwise is wrong.\n- **Triggers and causes are different.** Genetics load the gun; triggers like stress, strep infections, skin injury, or certain drugs pull the trigger. Managing triggers matters even when you can't change the genetics.\n- **Biologics work by targeting the specific immune signals driving the condition.** That's why they can be so effective when topicals alone aren't enough.\n\nUnderstanding this doesn't cure the condition \u2014 but it often lowers the 'why is this happening to me' weight.\n\nNext session, we'll start a simple log of what triggers your flares \u2014 so you have data, not guesses."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_tool_psychoed_intro",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_tool_selfcomp_intro": {
+        "id": "n_tool_selfcomp_intro",
+        "type": "intervention",
+        "label": "Tool A \u00b7 Self-Kindness Phrase \u2014 intro",
+        "deliver_after_hours": 48,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**Tool: Your Self-Kindness Phrase.**\n\nThe self-compassion practice from last session is built around three lines: *this is a moment of difficulty \u00b7 I am not alone in this \u00b7 may I be kind to myself today*. Most people, on first try, find one of those three lines lands more than the others \u2014 that's the one to keep.\n\nThe point of this tool is to make it yours: write a single short phrase, in your own words, that you can say silently to yourself when shame or self-criticism flares. Something you'd actually use. The next screen gives you space to draft it."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_tool_selfcomp_practice",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_tool_selfcomp_practice": {
+        "id": "n_tool_selfcomp_practice",
+        "type": "intervention",
+        "label": "Tool A \u00b7 draft your phrase",
+        "deliver_after_hours": 0,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**Write your phrase.**\n\nKeep it short. Make it sound like you, not a self-help book. It can be tender, blunt, dry-humoured \u2014 whatever you'd actually say in your own head.\n\nA few examples from others:\n- *'It's hard. That's allowed.'*\n- *'Lots of people are walking around with skin like this.'*\n- *'Be kind to the human carrying it.'*"
+        },
+        "response": {
+          "kind": "text",
+          "maxLength": 200,
+          "placeholder": "My phrase\u2026"
+        },
+        "edges": [
+          {
+            "target": "n_tool_selfcomp_reflect",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_tool_selfcomp_reflect": {
+        "id": "n_tool_selfcomp_reflect",
+        "type": "intervention",
+        "label": "Tool A \u00b7 reflection",
+        "deliver_after_hours": 0,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**That phrase \u2014 is it one you'd use?**\n\n- **Keep it** \u2014 save it to your home screen for later\n- **Edit it** \u2014 go back and try again\n- **Skip for now** \u2014 move on, come back to it later"
+        },
+        "response": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "KEEP",
+              "label": "Keep it"
+            },
+            {
+              "value": "EDIT",
+              "label": "Edit it"
+            },
+            {
+              "value": "SKIP",
+              "label": "Skip for now"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "target": "n_integration",
+            "condition": {
+              "on": "response_match",
+              "value": "KEEP"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_tool_selfcomp_practice",
+            "condition": {
+              "on": "response_match",
+              "value": "EDIT"
+            },
+            "priority": 2
+          },
+          {
+            "target": "n_integration",
+            "condition": {
+              "on": "response_match",
+              "value": "SKIP"
+            },
+            "priority": 3
+          }
+        ]
+      },
+      "n_tool_act_intro": {
+        "id": "n_tool_act_intro",
+        "type": "intervention",
+        "label": "Tool B \u00b7 Values Activity Ladder \u2014 intro",
+        "deliver_after_hours": 48,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**Tool: Values Activity Ladder.**\n\nA simple way of taking something that matters to you and breaking it into small, achievable steps you can build up over time \u2014 even on the days when psoriasis is loud.\n\nThe principle: pick something you value, identify the activity that expresses that value, then build a ladder of versions of that activity from \"smallest possible step today\" up to \"fully doing it.\" On a hard day you do a bottom rung. On a good day you reach higher. Either way, you're moving toward what matters \u2014 not waiting for psoriasis to permit it.\n\nThe next screen gives you space to draft your ladder."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_tool_act_practice",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_tool_act_practice": {
+        "id": "n_tool_act_practice",
+        "type": "intervention",
+        "label": "Tool B \u00b7 build your ladder",
+        "deliver_after_hours": 0,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**Build your ladder.**\n\nUse this structure (or your own \u2014 it's your ladder):\n\n- **What I value:** *(a one-word value: connection, creativity, contribution, freedom, family, learning\u2026)*\n- **An activity that expresses it:** *(specific \u2014 'see my closest friend', 'paint', 'help my partner cook')*\n- **Smallest step I could take today:** *(small enough you'd do it on a flare day \u2014 'message her', 'set up the easel')*\n- **Next step this week:** *(slightly bigger)*\n- **Bigger step when I'm ready:** *(the fuller version)*"
+        },
+        "response": {
+          "kind": "text",
+          "maxLength": 500,
+          "placeholder": "My value: \u2026  Smallest step: \u2026  Bigger step: \u2026"
+        },
+        "edges": [
+          {
+            "target": "n_tool_act_reflect",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_tool_act_reflect": {
+        "id": "n_tool_act_reflect",
+        "type": "intervention",
+        "label": "Tool B \u00b7 reflection",
+        "deliver_after_hours": 0,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**Your smallest step \u2014 could you do it this week?**\n\n- **Yes, I'll commit** \u2014 we'll save the ladder and check in\n- **I want to revise it** \u2014 go back and edit\n- **Skip for now** \u2014 move on, come back to it later"
+        },
+        "response": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "COMMIT",
+              "label": "Yes, I'll commit"
+            },
+            {
+              "value": "EDIT",
+              "label": "I want to revise it"
+            },
+            {
+              "value": "SKIP",
+              "label": "Skip for now"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "target": "n_integration",
+            "condition": {
+              "on": "response_match",
+              "value": "COMMIT"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_tool_act_practice",
+            "condition": {
+              "on": "response_match",
+              "value": "EDIT"
+            },
+            "priority": 2
+          },
+          {
+            "target": "n_integration",
+            "condition": {
+              "on": "response_match",
+              "value": "SKIP"
+            },
+            "priority": 3
+          }
+        ]
+      },
+      "n_tool_cbt_intro": {
+        "id": "n_tool_cbt_intro",
+        "type": "intervention",
+        "label": "Tool C \u00b7 Thought Record \u2014 intro",
+        "deliver_after_hours": 48,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**Tool: Thought Record.**\n\nA simple way to notice what you were thinking when you felt upset, and check whether that thought is fair or helpful.\n\nThe principle: when distress flares, the thought driving it often goes unexamined. Writing it down \u2014 and looking at the evidence for and against it \u2014 slows the loop and gives you choices. With practice, the noticing alone starts to do the work.\n\nThe next screen walks you through one full record, using a recent psoriasis-related moment."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_tool_cbt_practice",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_tool_cbt_practice": {
+        "id": "n_tool_cbt_practice",
+        "type": "intervention",
+        "label": "Tool C \u00b7 complete a record",
+        "deliver_after_hours": 0,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**Walk through one record.**\n\nPick one psoriasis-related moment from the last week or so when you felt upset.\n\n- **Situation:** *(what was happening \u2014 be specific: 'getting changed in the gym after spinning')*\n- **What went through your head:** *(the thought, in the words it actually came in: 'they all noticed, this is humiliating')*\n- **Evidence the thought is fair:** *(what supports it?)*\n- **Evidence against, or another way to see it:** *(what would you say to a friend in this moment?)*\n- **A more balanced thought:** *(not necessarily a positive one \u2014 just a fairer one)*"
+        },
+        "response": {
+          "kind": "text",
+          "maxLength": 500,
+          "placeholder": "Situation: \u2026  Thought: \u2026  Evidence: \u2026  Balanced: \u2026"
+        },
+        "edges": [
+          {
+            "target": "n_tool_cbt_reflect",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_tool_cbt_reflect": {
+        "id": "n_tool_cbt_reflect",
+        "type": "intervention",
+        "label": "Tool C \u00b7 reflection",
+        "deliver_after_hours": 0,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**After writing it through \u2014 did anything shift?**\n\n- **Yes, it loosened a bit** \u2014 save the record as a template\n- **It's the same** \u2014 that's also useful information; we'll talk about why next session\n- **Skip for now** \u2014 move on, come back to it later"
+        },
+        "response": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "SHIFT",
+              "label": "Yes, it loosened a bit"
+            },
+            {
+              "value": "SAME",
+              "label": "It's the same"
+            },
+            {
+              "value": "SKIP",
+              "label": "Skip for now"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "target": "n_integration",
+            "condition": {
+              "on": "response_match",
+              "value": "SHIFT"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_integration",
+            "condition": {
+              "on": "response_match",
+              "value": "SAME"
+            },
+            "priority": 2
+          },
+          {
+            "target": "n_integration",
+            "condition": {
+              "on": "response_match",
+              "value": "SKIP"
+            },
+            "priority": 3
+          }
+        ]
+      },
+      "n_tool_psychoed_intro": {
+        "id": "n_tool_psychoed_intro",
+        "type": "intervention",
+        "label": "Tool D \u00b7 Trigger Awareness Log \u2014 intro",
+        "deliver_after_hours": 48,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**Tool: Trigger Awareness Log.**\n\nA simple way of noticing what is actually happening in your life around the times your skin gets worse \u2014 so you have data, not guesses.\n\nThe principle: people often have a theory about what flares them ('it's stress', 'it's gluten', 'it's the weather') but rarely the evidence. Writing it down for a few weeks \u2014 flare changes, plus what happened in the days before \u2014 is how you find the patterns that are actually yours.\n\nThe next screen gives you a starting entry to fill in."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_tool_psychoed_practice",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_tool_psychoed_practice": {
+        "id": "n_tool_psychoed_practice",
+        "type": "intervention",
+        "label": "Tool D \u00b7 log a recent flare or change",
+        "deliver_after_hours": 0,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**Log a recent flare or change.**\n\nThink back to the last time your skin clearly got worse \u2014 or, if it's been steady, the last clear change of any kind.\n\n- **When:** *(roughly \u2014 'about 10 days ago')*\n- **What you noticed on your skin:** *(area, intensity, anything new)*\n- **What was going on in the days before:** *(sleep, stress, illness, infections, medications, alcohol, weather, skin injury, hormonal change)*\n- **Your best guess at the trigger:** *(it's fine to be unsure \u2014 guess anyway)*\n\nDoing this for 3\u20134 entries over the next few weeks is usually enough to start seeing what's yours."
+        },
+        "response": {
+          "kind": "text",
+          "maxLength": 500,
+          "placeholder": "When: \u2026  What I noticed: \u2026  Days before: \u2026  Best guess: \u2026"
+        },
+        "edges": [
+          {
+            "target": "n_tool_psychoed_reflect",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_tool_psychoed_reflect": {
+        "id": "n_tool_psychoed_reflect",
+        "type": "intervention",
+        "label": "Tool D \u00b7 reflection",
+        "deliver_after_hours": 0,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**Want to keep this log going?**\n\n- **Yes** \u2014 we'll prompt you to add an entry every week or so\n- **Maybe** \u2014 save what you've written, no automatic prompts\n- **Skip for now** \u2014 move on, come back to it later"
+        },
+        "response": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "KEEP",
+              "label": "Yes"
+            },
+            {
+              "value": "SAME",
+              "label": "Maybe"
+            },
+            {
+              "value": "SKIP",
+              "label": "Skip for now"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "target": "n_integration",
+            "condition": {
+              "on": "response_match",
+              "value": "KEEP"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_integration",
+            "condition": {
+              "on": "response_match",
+              "value": "SAME"
+            },
+            "priority": 2
+          },
+          {
+            "target": "n_integration",
+            "condition": {
+              "on": "response_match",
+              "value": "SKIP"
+            },
+            "priority": 3
+          }
+        ]
+      },
+      "n_integration": {
+        "id": "n_integration",
+        "type": "intervention",
+        "label": "Integration",
+        "deliver_after_hours": 0,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**Stepping back \u2014 over these three weeks, how does it feel?**\n\n- **Something has shifted** \u2014 even a small one\n- **Something useful, even if nothing has shifted yet** \u2014 the tool gave me something to try\n- **Not yet** \u2014 it's been useful information but I haven't felt a change"
+        },
+        "response": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "SHIFT",
+              "label": "Something has shifted"
+            },
+            {
+              "value": "SOMETHING",
+              "label": "Something useful, even if nothing has shifted yet"
+            },
+            {
+              "value": "NOT_YET",
+              "label": "Not yet"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "target": "n_plsi_recheck_intro",
+            "condition": {
+              "on": "response_match",
+              "value": "SHIFT"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_plsi_recheck_intro",
+            "condition": {
+              "on": "response_match",
+              "value": "SOMETHING"
+            },
+            "priority": 2
+          },
+          {
+            "target": "n_plsi_recheck_intro",
+            "condition": {
+              "on": "response_match",
+              "value": "NOT_YET"
+            },
+            "priority": 3
+          }
+        ]
+      },
+      "n_plsi_recheck_intro": {
+        "id": "n_plsi_recheck_intro",
+        "type": "intervention",
+        "label": "Stress re-check intro",
+        "deliver_after_hours": 0,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "**One quick re-check.**\n\nThree weeks ago you rated how stressful different psoriasis-related situations felt. We're not going to redo all 15 \u2014 just a single overall question to track movement. One slider, then we're done with this part."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_plsi_recheck_item",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_plsi_recheck_item": {
+        "id": "n_plsi_recheck_item",
+        "type": "intervention",
+        "label": "PLSI rapid re-check",
+        "deliver_after_hours": 0,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "Overall, how stressful has psoriasis felt in your day-to-day life over the past week?"
+        },
+        "response": {
+          "kind": "scale",
+          "min": 0,
+          "max": 10,
+          "labels": {
+            "0": "not at all",
+            "10": "extremely"
+          }
+        },
+        "edges": [
+          {
+            "target": "n_change_signposting",
+            "condition": {
+              "on": "response_match",
+              "value": "*"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_change_signposting": {
+        "id": "n_change_signposting",
+        "type": "intervention",
+        "label": "Change acknowledgement & signposting",
+        "deliver_after_hours": 0,
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "text",
+          "body": "*(Conditional content \u2014 platform compares re-check rating against PLSI baseline aggregate.)*\n\n**If clearly down:**\nThat's a real shift. Stress in chronic conditions doesn't usually move quickly, so even a couple of points is worth marking. The tool you've started is yours to keep \u2014 keep using it.\n\n**If about the same:**\nThree weeks is a short window for stress to move, and 'about the same' is the most common pattern at this stage. The tool you've started will compound over weeks, not days. The fuller programme picks this up.\n\n**If clearly up:**\nThank you for telling us honestly. Stress moving up in this short a window \u2014 when you've been doing the work \u2014 is worth taking seriously. A few things worth knowing: this is sometimes what happens when a measure makes you notice things you'd been working around; it doesn't mean the work is wrong. But please also: if distress is heavy, please reach out \u2014 your GP, your dermatology team, Psoriasis UK / National Psoriasis Foundation helplines. The fuller programme is built for this; it's also OK to take a break first."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_handoff",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_handoff": {
+        "id": "n_handoff",
+        "type": "intervention",
+        "label": "Handoff",
+        "deliver_after_hours": 48,
+        "week": 3,
+        "session": 2,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1500964757637-c85e8a162699?w=800",
+              "alt": "Open path forward \u2014 placeholder, curate before deployment"
+            },
+            {
+              "type": "text",
+              "body": "**What's next.**\n\nOver the past three weeks you have:\n\n- Mapped how you think about your psoriasis (B-IPQ)\n- Mapped where it sits as everyday stress (PLSI)\n- Tried one of four coping approaches (the taster)\n- Practised it with a tool you can keep using\n\nThat map and that tool are the starting point. The fuller programme \u2014 which you can enter next \u2014 builds depth across all four approaches over 6\u20138 weeks, weighted toward the one you found most useful here, and folds in your B-IPQ and PLSI patterns more directly.\n\nYour PHQ-9 score is being re-checked now in the background, which gives us a baseline-vs-now snapshot for the work ahead."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_end_completed",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_end_completed": {
+        "id": "n_end_completed",
+        "type": "end",
+        "label": "End \u00b7 completed",
+        "outcome": "completed"
+      },
+      "n_end_deferred": {
+        "id": "n_end_deferred",
+        "type": "end",
+        "label": "End \u00b7 deferred",
+        "outcome": "deferred"
+      }
+    }
   }
 ]
