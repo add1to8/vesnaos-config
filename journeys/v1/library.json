@@ -10203,5 +10203,632 @@
         "outcome": "deferred"
       }
     }
+  },
+  {
+    "id": "jrn_psoriasis_mood_v1",
+    "version": "1.0",
+    "name": "Psoriasis: Mood & Wellbeing",
+    "description": "A 7-week self-directed adaptive journey for adults living with psoriasis. Targets mood, self-criticism, stigma, flare-up coping, relationships, and intimacy using CBT, Behavioural Activation, and ACT. Draft for Atlantis Health clinical review.",
+    "entry": "n_welcome",
+    "metadata": {
+      "created_at": "2026-04-24",
+      "updated_at": "2026-04-24",
+      "author": "Intervengine (draft for Atlantis Health clinical review)",
+      "clinical_ref": "CBT + Behavioural Activation + ACT; PROM: Psoriasis Life Stress Inventory (PLSI); interim: PHQ-2",
+      "duration_weeks": 7,
+      "tags": [
+        "psoriasis",
+        "mood",
+        "mental-wellbeing",
+        "self-directed",
+        "cbt",
+        "act",
+        "behavioural-activation",
+        "draft"
+      ],
+      "screening": "plsi"
+    },
+    "schedule": {
+      "total_weeks": 7,
+      "sessions_per_week": 2,
+      "preferred_spacing_hours": 72
+    },
+    "nodes": {
+      "n_welcome": {
+        "id": "n_welcome",
+        "type": "intervention",
+        "label": "Welcome",
+        "week": 1,
+        "session": 1,
+        "deliver_after_hours": 0,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
+              "alt": "Calm natural landscape at sunrise"
+            },
+            {
+              "type": "text",
+              "body": "# Welcome\n\nLiving with psoriasis isn't just about your skin. Most people living with it tell us it affects how they feel too \u2014 mood, confidence, relationships, sense of themselves. That's common, and it's what this programme is for.\n\nOver the next few weeks, we'll work on the mental side of psoriasis: the thoughts, reactions, and day-to-day choices that shape how you experience it. **You'll choose what to explore and when \u2014 this is your journey, your way.**\n\nWe'll start with a few quick questions about how psoriasis is affecting your life right now, and check in again later so you can see what's shifted."
+            }
+          ]
+        },
+        "response": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "ready",
+              "label": "I'm ready \u2014 let's begin"
+            },
+            {
+              "value": "more",
+              "label": "Tell me a bit more first"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "target": "n_baseline_plsi",
+            "condition": {
+              "on": "response_match",
+              "value": "ready"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_welcome_more",
+            "condition": {
+              "on": "response_match",
+              "value": "more"
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_welcome_more": {
+        "id": "n_welcome_more",
+        "type": "intervention",
+        "label": "How the programme works",
+        "week": 1,
+        "session": 1,
+        "deliver_after_hours": 0,
+        "content": {
+          "type": "text",
+          "body": "# How it works\n\nThe programme runs over about 7 weeks. Usually two short sessions a week, 5\u201310 minutes each.\n\nAfter your first session you'll pick what to explore next \u2014 thoughts and self-criticism, small actions that shift mood, managing flare-ups, relationships, or intimacy. You can do them in any order, and pause whenever you need to.\n\nWe'll use a short questionnaire at three points \u2014 start, middle, end \u2014 so you can see what's shifting."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_baseline_plsi",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_baseline_plsi": {
+        "id": "n_baseline_plsi",
+        "type": "intervention",
+        "label": "Baseline check-in (PLSI)",
+        "week": 1,
+        "session": 1,
+        "deliver_after_hours": 0,
+        "content": {
+          "type": "text",
+          "body": "# Before we begin\n\nWe'd like to understand how psoriasis is affecting your life right now. The Psoriasis Life Stress Inventory takes about 5 minutes \u2014 a set of questions about the stress and daily impact of psoriasis.\n\nYour answers stay private. We'll check in again later so you can see what's shifted."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_module1_making_sense",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_end_deferred",
+            "condition": {
+              "on": "timeout",
+              "after_seconds": 1209600
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_module1_making_sense": {
+        "id": "n_module1_making_sense",
+        "type": "intervention",
+        "label": "Making sense of psoriasis & wellbeing",
+        "week": 1,
+        "session": 2,
+        "deliver_after_hours": 72,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800",
+              "alt": "Soft morning light through trees"
+            },
+            {
+              "type": "text",
+              "body": "# Making sense of it\n\nPsoriasis doesn't sit neatly in one box. Your skin, your nervous system, and your mind talk to each other constantly. Stress can worsen a flare. A flare can dent mood. Low mood can make you avoid things \u2014 which, over time, dents mood further.\n\nThat's not all in your head. It's a real two-way loop.\n\nThe good news: working on one part of the loop usually helps the others. That's what this programme is about. You'll learn practical tools \u2014 noticing unhelpful thoughts, taking small actions that matter to you, managing flare-ups, handling relationships and intimacy. Not all at once. You'll choose what to work on when."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_phq2_check",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ]
+      },
+      "n_phq2_check": {
+        "id": "n_phq2_check",
+        "type": "intervention",
+        "label": "Quick mood check-in (PHQ-2)",
+        "deliver_after_hours": 0,
+        "content": {
+          "type": "text",
+          "body": "# Quick check-in\n\nTwo quick questions about how you've been feeling over the last two weeks. This helps us offer the right kind of support at the right time."
+        },
+        "response": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "green",
+              "label": "PHQ-2 0\u20132 (green band, app-delivered)"
+            },
+            {
+              "value": "amber",
+              "label": "PHQ-2 3\u20134 (amber band, app-delivered)"
+            },
+            {
+              "value": "red",
+              "label": "PHQ-2 \u22655 (red band, app-delivered)"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "target": "n_hub",
+            "condition": {
+              "on": "response_match",
+              "value": "green"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_hub",
+            "condition": {
+              "on": "response_match",
+              "value": "amber"
+            },
+            "priority": 2
+          },
+          {
+            "target": "n_phq2_low_support",
+            "condition": {
+              "on": "response_match",
+              "value": "red"
+            },
+            "priority": 3
+          }
+        ],
+        "week": 1,
+        "session": 2
+      },
+      "n_phq2_low_support": {
+        "id": "n_phq2_low_support",
+        "type": "intervention",
+        "label": "Feeling low right now",
+        "deliver_after_hours": 0,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800",
+              "alt": "Calm ocean at dusk"
+            },
+            {
+              "type": "text",
+              "body": "# Feeling low right now\n\nYour answers suggest you've been feeling low. That makes sense \u2014 psoriasis carries a real weight, and it's one most people don't see.\n\nThis programme can help, but it isn't a substitute for talking to someone. If things feel heavier than usual, please reach out \u2014 to your GP, dermatologist, or one of the support services below.\n\n*[Signposting to be added by Atlantis Health \u2014 region-specific resources.]*\n\nWhen you're ready, pick what you'd like to work on next."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_hub",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ],
+        "week": 1,
+        "session": 2
+      },
+      "n_hub": {
+        "id": "n_hub",
+        "type": "intervention",
+        "label": "What would you like to work on next?",
+        "deliver_after_hours": 0,
+        "content": {
+          "type": "text",
+          "body": "# What next?\n\nPick what feels most useful today \u2014 there's no right order. So far you've explored: {{journey_choice_n_hub}}.\n\n- **Unhelpful thoughts** \u2014 notice and reframe the self-critical thoughts that come with psoriasis\n- **Changing what you do** \u2014 small actions that matter to you, built into your week\n- **Flare-ups & mood** \u2014 holding steady when skin and mood wobble together\n- **Relationships** \u2014 handling questions, disclosure, and support from people around you\n- **Sex & intimacy** \u2014 a sensitive one, rarely talked about, often worth the conversation\n\nOnce you've explored a few of these, a check-in option will open up so you can see how things are shifting."
+        },
+        "response": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "thoughts",
+              "label": "Unhelpful thoughts"
+            },
+            {
+              "value": "activation",
+              "label": "Changing what you do"
+            },
+            {
+              "value": "flareups",
+              "label": "Flare-ups & mood"
+            },
+            {
+              "value": "relationships",
+              "label": "Relationships"
+            },
+            {
+              "value": "intimacy",
+              "label": "Sex & intimacy"
+            },
+            {
+              "value": "checkin",
+              "label": "Mid-programme check-in"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "target": "n_module2a_thoughts_intro",
+            "condition": {
+              "on": "response_match",
+              "value": "thoughts"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_module3a_ba_intro",
+            "condition": {
+              "on": "response_match",
+              "value": "activation"
+            },
+            "priority": 2
+          },
+          {
+            "target": "n_module4_flareups",
+            "condition": {
+              "on": "response_match",
+              "value": "flareups"
+            },
+            "priority": 3
+          },
+          {
+            "target": "n_module5_relationships",
+            "condition": {
+              "on": "response_match",
+              "value": "relationships"
+            },
+            "priority": 4
+          },
+          {
+            "target": "n_module6_intimacy",
+            "condition": {
+              "on": "response_match",
+              "value": "intimacy"
+            },
+            "priority": 5
+          },
+          {
+            "target": "n_midpoint_plsi",
+            "condition": {
+              "on": "response_match",
+              "value": "checkin"
+            },
+            "priority": 6
+          }
+        ],
+        "week": 1,
+        "session": 2
+      },
+      "n_module2a_thoughts_intro": {
+        "id": "n_module2a_thoughts_intro",
+        "type": "intervention",
+        "label": "Unhelpful thoughts (1 of 2)",
+        "deliver_after_hours": 72,
+        "content": {
+          "type": "text",
+          "body": "# Unhelpful thoughts\n\nWhen psoriasis flares, your mind often throws up a predictable script: *they're staring, they think I'm dirty, I can't wear that, I'm disgusting.* These thoughts feel like facts. They're not \u2014 they're a mind on high alert.\n\nThe skill isn't to argue with them or force positivity. It's to notice them, then check: **is this fair? What would I say to a friend with the same thought?**\n\nThat small pause \u2014 noticing, then checking \u2014 is the whole skill. We'll practise it properly next session with a tool called a thought record."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_module2b_thoughts_practice",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ],
+        "week": 2,
+        "session": 1
+      },
+      "n_module2b_thoughts_practice": {
+        "id": "n_module2b_thoughts_practice",
+        "type": "intervention",
+        "label": "Unhelpful thoughts (2 of 2) \u2014 thought record",
+        "deliver_after_hours": 72,
+        "content": {
+          "type": "text",
+          "body": "# Thought record\n\nPick a recent moment you felt upset, ashamed, or self-critical about your skin. Walk through it:\n\n1. **Situation** \u2014 where were you, what happened?\n2. **Thought** \u2014 what exact thought went through your mind?\n3. **Feeling** \u2014 name it, rate it 0\u201310\n4. **Check it** \u2014 what's the evidence for this thought? Against it? What would you say to a friend thinking this?\n5. **Reframe** \u2014 a fairer, kinder version of the thought\n\nOne round is enough. The point isn't to fix the thought \u2014 it's to put a little space between you and it. Do this a few times a week and that space grows."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_phq2_check",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ],
+        "week": 5,
+        "session": 1
+      },
+      "n_module3a_ba_intro": {
+        "id": "n_module3a_ba_intro",
+        "type": "intervention",
+        "label": "Changing what you do (1 of 2)",
+        "deliver_after_hours": 72,
+        "content": {
+          "type": "text",
+          "body": "# Changing what you do to change how you feel\n\nLow mood shrinks the world. You cancel, skip, stay home, wait it out. Which feels like self-protection \u2014 and is, in small doses \u2014 but over time it starves you of the things that normally keep mood up.\n\nThe way out isn't waiting to feel better first. It's the reverse: do something small that matters to you, and let the feeling follow.\n\nNext session we'll build a simple ladder \u2014 from something tiny you could do today, up to something that feels like a stretch."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_module3b_values_ladder",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ],
+        "week": 2,
+        "session": 2
+      },
+      "n_module3b_values_ladder": {
+        "id": "n_module3b_values_ladder",
+        "type": "intervention",
+        "label": "Changing what you do (2 of 2) \u2014 values ladder",
+        "deliver_after_hours": 72,
+        "content": {
+          "type": "text",
+          "body": "# Values activity ladder\n\nPick one value that matters to you \u2014 connection, creativity, being outdoors, looking after your body, learning something. Anything that feels like *you*.\n\nNow build four rungs, smallest first:\n\n1. **Rung 1 (tiny)** \u2014 takes 2 minutes, can't really fail. *e.g. text one friend.*\n2. **Rung 2 (small)** \u2014 takes 15 minutes, low stakes. *e.g. a short walk.*\n3. **Rung 3 (medium)** \u2014 takes longer, a bit more vulnerable. *e.g. meet a friend for coffee.*\n4. **Rung 4 (stretch)** \u2014 the one you'd do if you were really back on form.\n\nPick the lowest rung you haven't done recently. Do it in the next 48 hours. That's it."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_phq2_check",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ],
+        "week": 5,
+        "session": 2
+      },
+      "n_module4_flareups": {
+        "id": "n_module4_flareups",
+        "type": "intervention",
+        "label": "Flare-ups & mood",
+        "deliver_after_hours": 72,
+        "content": {
+          "type": "text",
+          "body": "# Flare-ups, uncertainty & mood\n\nFlare-ups test everything. You can't predict them, you can't always explain them, and fighting the unpredictability makes the whole thing heavier.\n\nThree moves that help when it's wobbling:\n\n- **Name it.** \"This is a flare. My mood is following my skin.\" Naming shrinks the panic.\n- **Don't argue with the thoughts.** \"I'm going to feel awful this week\" doesn't need debating \u2014 just noticed.\n- **Keep one small thing going.** The rung-one action from the values ladder. Even on a bad skin week.\n\nThe goal isn't to feel fine during a flare. It's to not lose yourself in it."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_phq2_check",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ],
+        "week": 3,
+        "session": 1
+      },
+      "n_module5_relationships": {
+        "id": "n_module5_relationships",
+        "type": "intervention",
+        "label": "Relationships",
+        "deliver_after_hours": 72,
+        "content": {
+          "type": "text",
+          "body": "# Relationships\n\nTwo things come up over and over with psoriasis and relationships:\n\n**1. The \"what's that?\" moments.** Have a ready phrase. Something like: *\"It's psoriasis \u2014 not contagious, I've had it a while.\"* Short, unapologetic. You don't owe anyone a full explanation. Practising it out loud once or twice means it's there when you need it.\n\n**2. Letting people in.** Most of us keep the hard days hidden from the people closest to us. That's understandable, and it's also isolating. Pick one person you trust. Tell them a bit more of what it's actually like \u2014 not to fix it, just so one other person knows."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_phq2_check",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ],
+        "week": 3,
+        "session": 2
+      },
+      "n_module6_intimacy": {
+        "id": "n_module6_intimacy",
+        "type": "intervention",
+        "label": "Sex & intimacy",
+        "deliver_after_hours": 72,
+        "content": {
+          "type": "text",
+          "body": "# Sex & intimacy\n\nThis is one of the most common impacts of psoriasis, and one of the least talked about. If it's affected you, you're not alone.\n\nA few things worth knowing:\n\n- **Most partners care far less about the skin than about you.** The story in your head about what they're thinking is rarely the story in theirs.\n- **Talking \u2014 even briefly, even awkwardly \u2014 reduces the charge.** Naming it out loud (\"I've been feeling a bit self-conscious lately\") lets a partner respond, instead of guessing.\n- **Intimacy is broader than sex.** Closeness, touch, and feeling safe together can all be rebuilt step by step if things have felt distant.\n\nIf this area feels stuck, a psychosexual therapist can help. *[Signposting to be added by Atlantis Health.]*"
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_phq2_check",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ],
+        "week": 4,
+        "session": 1
+      },
+      "n_midpoint_plsi": {
+        "id": "n_midpoint_plsi",
+        "type": "intervention",
+        "label": "Mid-programme check-in (PLSI)",
+        "deliver_after_hours": 72,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800",
+              "alt": "Open coastline mid-journey"
+            },
+            {
+              "type": "text",
+              "body": "# Checking in\n\nYou've worked through the core modules. Nice work \u2014 this isn't light material.\n\nLet's run the Psoriasis Life Stress Inventory again. Takes about 5 minutes. It'll give us a sense of what's shifted since you started.\n\nAfter that, one final module: anticipating and planning for setbacks \u2014 so you've got something in place for the wobbly weeks."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_module7_setbacks",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ],
+        "week": 4,
+        "session": 2
+      },
+      "n_module7_setbacks": {
+        "id": "n_module7_setbacks",
+        "type": "intervention",
+        "label": "Anticipating & planning for setbacks",
+        "deliver_after_hours": 72,
+        "content": {
+          "type": "text",
+          "body": "# Planning for setbacks\n\nSetbacks aren't the work undoing itself. They're what living with a chronic condition looks like. A bad week doesn't mean you're back at square one \u2014 it means you're human.\n\nWrite a three-line setback plan now, while things are steady, so it's there when you need it:\n\n1. **Early warning signs** \u2014 what tells you you're sliding? *(e.g. cancelling plans, harsher self-talk, avoiding mirrors)*\n2. **Two things that help** \u2014 pull from what you've learned. *(e.g. thought record, rung-one action)*\n3. **One person I can tell** \u2014 name them. Not for advice, just so they know.\n\nKeep this somewhere you'll find it."
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_final_plsi",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ],
+        "week": 6,
+        "session": 1
+      },
+      "n_final_plsi": {
+        "id": "n_final_plsi",
+        "type": "intervention",
+        "label": "Final check-in (PLSI)",
+        "deliver_after_hours": 72,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800",
+              "alt": "Open hand against sky"
+            },
+            {
+              "type": "text",
+              "body": "# One last check-in\n\nOne more PLSI \u2014 about 5 minutes. After this you'll see your trajectory from where you started.\n\nThese scores aren't a verdict. They're a marker in time. You've done real work; that matters whether or not it shows up neatly in the numbers yet."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_end_completed",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          }
+        ],
+        "week": 6,
+        "session": 2
+      },
+      "n_end_completed": {
+        "id": "n_end_completed",
+        "type": "end",
+        "label": "Programme complete",
+        "outcome": "completed"
+      },
+      "n_end_deferred": {
+        "id": "n_end_deferred",
+        "type": "end",
+        "label": "Programme paused",
+        "outcome": "deferred"
+      }
+    }
   }
 ]
