@@ -103,6 +103,29 @@
                     <tbody id="metrics-table"></tbody>
                 </table>
             </div>
+
+            <div class="section">
+                <h3>Intervention Feedback (Selected Week)</h3>
+                <p id="feedback-empty" style="color:#888;font-size:0.9em;display:none;">
+                    No intervention feedback recorded this week yet, or too few votes to display (min 3 votes per atom).
+                </p>
+                <div id="feedback-tables" style="display:none;">
+                    <h4 style="font-size:0.95em;margin-top:12px;">Top-rated</h4>
+                    <table>
+                        <thead>
+                            <tr><th>Atom</th><th>👍</th><th>👎</th><th>Sample</th><th>Approval</th></tr>
+                        </thead>
+                        <tbody id="feedback-top-table"></tbody>
+                    </table>
+                    <h4 style="font-size:0.95em;margin-top:16px;">Lowest-rated (candidates for iteration)</h4>
+                    <table>
+                        <thead>
+                            <tr><th>Atom</th><th>👍</th><th>👎</th><th>Sample</th><th>Approval</th></tr>
+                        </thead>
+                        <tbody id="feedback-bottom-table"></tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -314,6 +337,42 @@
                     </tr>
                 `)
                 .join('');
+
+            renderFeedback(agg.feedback);
+        }
+
+        /// Top-rated and lowest-rated interventions for the selected week.
+        /// The Edge Function already filtered atoms below 3 votes and computed
+        /// up_ratio for us. We just sort and slice.
+        function renderFeedback(feedback) {
+            const empty = document.getElementById('feedback-empty');
+            const tables = document.getElementById('feedback-tables');
+            const top = document.getElementById('feedback-top-table');
+            const bottom = document.getElementById('feedback-bottom-table');
+
+            if (!feedback || feedback.length === 0) {
+                empty.style.display = 'block';
+                tables.style.display = 'none';
+                return;
+            }
+            empty.style.display = 'none';
+            tables.style.display = 'block';
+
+            const sorted = [...feedback].sort((a, b) => b.up_ratio - a.up_ratio);
+            const topFive = sorted.slice(0, 5);
+            const bottomFive = sorted.slice(-5).reverse();  // worst first
+
+            const rowHtml = (r) => `
+                <tr>
+                    <td>${r.atom_id}</td>
+                    <td>${r.up}</td>
+                    <td>${r.down}</td>
+                    <td>${r.total}</td>
+                    <td>${Math.round(r.up_ratio * 100)}%</td>
+                </tr>
+            `;
+            top.innerHTML = topFive.map(rowHtml).join('');
+            bottom.innerHTML = bottomFive.map(rowHtml).join('');
         }
 
         function renderTrends() {
