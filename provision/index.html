@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthOS — Employer Setup</title>
+    <title>VesnaOS — Employer Setup</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -115,9 +115,9 @@
 <body>
     <div class="card">
         <div class="icon">🏢</div>
-        <h1>HealthOS</h1>
+        <h1>VesnaOS</h1>
         <div class="employer-name" id="employer-name"></div>
-        <p>Your employer is providing HealthOS as a wellness benefit. All health data stays on your device.</p>
+        <p>Your employer is providing VesnaOS as a wellness benefit. All health data stays on your device.</p>
 
         <div class="status" id="status"></div>
 
@@ -128,9 +128,9 @@
 
         <!-- Shown when app is not installed -->
         <div id="install-prompt" style="display:none;">
-            <p>Install HealthOS, then tap the button below to complete setup.</p>
+            <p>Install VesnaOS, then tap the button below to complete setup.</p>
             <div class="store-buttons">
-                <a href="#" id="store-link" class="btn btn-primary">Download HealthOS</a>
+                <a href="#" id="store-link" class="btn btn-primary">Download VesnaOS</a>
                 <a href="#" id="retry-link" class="btn btn-secondary">I already have it — retry</a>
             </div>
         </div>
@@ -147,7 +147,7 @@
     </div>
 
     <div class="footer">
-        HealthOS by Code 1001 — Privacy-first health monitoring
+        VesnaOS by Code 1001 — Privacy-first health monitoring
     </div>
 
     <script>
@@ -164,7 +164,7 @@
         }
 
         // Build deep link
-        let deepLink = `healthos://provision?employer_id=${encodeURIComponent(employerId)}&analytics=${analytics}`;
+        let deepLink = `vesnaos://provision?employer_id=${encodeURIComponent(employerId)}&analytics=${analytics}`;
         if (endpoint) deepLink += `&endpoint=${encodeURIComponent(endpoint)}`;
 
         // Detect platform
@@ -175,11 +175,11 @@
         const storeLink = document.getElementById('store-link');
         if (isIOS) {
             // Replace with actual App Store URL when available
-            storeLink.href = 'https://apps.apple.com/search?term=healthos';
+            storeLink.href = 'https://apps.apple.com/search?term=vesnaos';
             storeLink.textContent = 'Download from App Store';
         } else {
             // Replace with actual Play Store URL when available
-            storeLink.href = 'https://play.google.com/store/search?q=healthos';
+            storeLink.href = 'https://play.google.com/store/search?q=vesnaos';
             storeLink.textContent = 'Download from Play Store';
         }
 
@@ -192,7 +192,7 @@
         // Try to open the app
         function tryOpenApp() {
             const statusEl = document.getElementById('status');
-            statusEl.textContent = 'Opening HealthOS...';
+            statusEl.textContent = 'Opening VesnaOS...';
             statusEl.className = 'status trying';
 
             document.getElementById('install-prompt').style.display = 'none';
@@ -205,7 +205,7 @@
             setTimeout(function() {
                 // Check if page is still visible (app didn't open)
                 if (!document.hidden) {
-                    statusEl.textContent = 'HealthOS is not installed yet.';
+                    statusEl.textContent = 'VesnaOS is not installed yet.';
                     statusEl.className = 'status';
                     document.getElementById('install-prompt').style.display = 'block';
                 } else {
