@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthOS Employer Dashboard</title>
+    <title>VesnaOS Employer Dashboard</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a1a; color: #e0e0e0; min-height: 100vh; }
@@ -65,7 +65,7 @@
     <!-- Login screen -->
     <div id="login-screen">
         <div class="login-card">
-            <h2>HealthOS Dashboard</h2>
+            <h2>VesnaOS Dashboard</h2>
             <input type="text" id="employer-id" placeholder="Employer ID (e.g. acme-corp)">
             <input type="password" id="api-key" placeholder="API Key">
             <button onclick="login()">Sign In</button>
@@ -77,7 +77,7 @@
     <div id="dashboard" style="display:none;">
         <div class="container">
             <header>
-                <h1>HealthOS <span id="employer-name"></span></h1>
+                <h1>VesnaOS <span id="employer-name"></span></h1>
                 <button class="logout" onclick="logout()">Sign Out</button>
             </header>
 
@@ -133,7 +133,7 @@
         };
 
         // Check stored session
-        const stored = sessionStorage.getItem('healthos_dashboard');
+        const stored = sessionStorage.getItem('vesnaos_dashboard');
         if (stored) {
             const s = JSON.parse(stored);
             currentEmployer = s.employer;
@@ -176,7 +176,7 @@
 
                 currentEmployer = employer;
                 currentApiKey = apiKey;
-                sessionStorage.setItem('healthos_dashboard', JSON.stringify({ employer, apiKey }));
+                sessionStorage.setItem('vesnaos_dashboard', JSON.stringify({ employer, apiKey }));
                 showDashboard();
             } catch (e) {
                 errorEl.textContent = 'Connection failed. Check your network.';
@@ -184,7 +184,7 @@
         }
 
         function logout() {
-            sessionStorage.removeItem('healthos_dashboard');
+            sessionStorage.removeItem('vesnaos_dashboard');
             currentEmployer = null;
             currentApiKey = null;
             document.getElementById('login-screen').style.display = 'block';
