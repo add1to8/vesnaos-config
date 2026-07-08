@@ -14,7 +14,6 @@
     "clinical_constraints": [],
     "applicable_event_types": [
       "steps",
-      "sleep",
       "hrv"
     ],
     "applicable_severities": [
@@ -286,7 +285,6 @@
     "clinical_constraints": [],
     "applicable_event_types": [
       "hrv",
-      "sleep",
       "self_report_mood",
       "self_report_stress"
     ],
