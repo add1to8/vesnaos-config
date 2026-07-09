@@ -126,6 +126,24 @@
                     </table>
                 </div>
             </div>
+
+            <div class="section">
+                <h3>Preference vs Guidance (Selected Week)</h3>
+                <p style="color:#888;font-size:0.9em;margin-top:0;">
+                    For each situation, the support <em>category</em> your team most approves of,
+                    next to the one the app's clinical rules suggest. Where they differ, personalised
+                    recommendations could serve your team better than the default guidance.
+                </p>
+                <p id="divergence-empty" style="color:#888;font-size:0.9em;display:none;">
+                    Not enough categorised feedback this week to compare (min 3 votes per situation-category).
+                </p>
+                <table id="divergence-table-wrap" style="display:none;">
+                    <thead>
+                        <tr><th>Situation</th><th>Team prefers</th><th>Approval</th><th>Guidance suggests</th><th>Status</th></tr>
+                    </thead>
+                    <tbody id="divergence-table"></tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -339,6 +357,7 @@
                 .join('');
 
             renderFeedback(agg.feedback);
+            renderDivergence(agg.context_feedback);
         }
 
         /// Top-rated and lowest-rated interventions for the selected week.
@@ -373,6 +392,89 @@
             `;
             top.innerHTML = topFive.map(rowHtml).join('');
             bottom.innerHTML = bottomFive.map(rowHtml).join('');
+        }
+
+        // Clinical category→situation guidance bonus. MIRRORS the Rust
+        // `category_match_bonus` in crates/vesnaos-core/.../planner.rs — keep in
+        // sync if that rule changes. We only need it to rank the categories
+        // actually present in the data, so the display shows which category the
+        // guidance favours per situation.
+        const RULE_BONUS = {
+            physical:      { steps: .15, flights_climbed: .15, heart_rate: .10, hrv: .10, activity_withdrawal: .15, mood_risk: .05, self_report_pain: .20 },
+            cognitive:     { hrv: .15, sleep: .10, stress_index: .15, mood_risk: .15, sleep_debt: .10, recovery_readiness: .10, self_report_mood: .15, self_report_stress: .15, self_report_energy: .05, self_report_pain: .15 },
+            psychological: { stress_index: .15, mood_risk: .15, activity_withdrawal: .10, sleep_debt: .10, recovery_readiness: .05, self_report_mood: .20, self_report_stress: .20, self_report_energy: .10 },
+            nutritional:   { glucose: .15, body_temperature: .05 },
+            safety:        { self_report_pain: .15 },  // else the 0.20 wildcard below
+        };
+        function ruleBonus(context, category) {
+            const c = (category || '').toLowerCase();
+            if (c === 'safety') return RULE_BONUS.safety[context] ?? 0.20; // Safety wildcard
+            return (RULE_BONUS[c] && RULE_BONUS[c][context]) || 0.0;
+        }
+
+        // Friendly labels for the raw event_type keys.
+        const SITUATION_LABEL = {
+            self_report_stress: 'Feeling stressed', self_report_mood: 'Low mood',
+            self_report_energy: 'Low energy', self_report_pain: 'In pain',
+            stress_index: 'High stress signal', mood_risk: 'Mood-risk signal',
+            activity_withdrawal: 'Activity withdrawal', sleep_debt: 'Sleep debt',
+            recovery_readiness: 'Low recovery', sleep: 'Sleep', hrv: 'HRV',
+        };
+        const label = (k) => SITUATION_LABEL[k] || k;
+        const cap = (s) => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+
+        /// Preference-vs-guidance divergence for the selected week. Groups the
+        /// cohort's per-(situation, category) approval, finds the most-approved
+        /// category per situation, and compares it against the guidance pick
+        /// (highest rule bonus among the categories present).
+        function renderDivergence(contextFeedback) {
+            const empty = document.getElementById('divergence-empty');
+            const wrap = document.getElementById('divergence-table-wrap');
+            const body = document.getElementById('divergence-table');
+
+            if (!contextFeedback || contextFeedback.length === 0) {
+                empty.style.display = 'block';
+                wrap.style.display = 'none';
+                return;
+            }
+
+            // Group rows by situation (context).
+            const byCtx = {};
+            for (const r of contextFeedback) {
+                (byCtx[r.context] = byCtx[r.context] || []).push(r);
+            }
+
+            const rows = [];
+            for (const ctx of Object.keys(byCtx)) {
+                const cats = byCtx[ctx];
+                if (cats.length < 2) continue; // need ≥2 categories to compare
+                const pref = cats.reduce((a, b) => b.approval > a.approval ? b : a);
+                const guide = cats.reduce((a, b) => ruleBonus(ctx, b.category) > ruleBonus(ctx, a.category) ? b : a);
+                const diverges = pref.category !== guide.category;
+                rows.push({ ctx, pref, guide, diverges });
+            }
+
+            if (rows.length === 0) {
+                empty.style.display = 'block';
+                wrap.style.display = 'none';
+                return;
+            }
+            // Divergent situations first.
+            rows.sort((a, b) => (b.diverges - a.diverges) || (b.pref.approval - a.pref.approval));
+
+            empty.style.display = 'none';
+            wrap.style.display = 'table';
+            body.innerHTML = rows.map(({ ctx, pref, guide, diverges }) => `
+                <tr>
+                    <td>${label(ctx)}</td>
+                    <td>${cap(pref.category)}</td>
+                    <td>${Math.round(pref.approval * 100)}% <span style="color:#888;">(n=${pref.total})</span></td>
+                    <td>${cap(guide.category)}</td>
+                    <td>${diverges
+                        ? '<span style="color:#e8590c;font-weight:600;">Diverges</span>'
+                        : '<span style="color:#2f9e44;">Aligned</span>'}</td>
+                </tr>
+            `).join('');
         }
 
         function renderTrends() {
