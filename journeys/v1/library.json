@@ -10830,5 +10830,650 @@
         "outcome": "deferred"
       }
     }
+  },
+  {
+    "id": "jrn_steady_glucose_v1",
+    "version": "1.0.0",
+    "name": "Steady Glucose",
+    "description": "Build the daily habits that keep blood sugar in a steadier range \u2014 food, movement, monitoring, medication, sleep and coping \u2014 grounded in the diabetes self-management education and support (DSMES) framework.",
+    "entry": "n_intro_welcome",
+    "metadata": {
+      "created_at": "2026-07-15T00:00:00Z",
+      "updated_at": "2026-07-15T00:00:00Z",
+      "author": "Tatjana Karaman",
+      "clinical_ref": "ADA-ADCES-DSMES-Standards-2022; ADCES7-Self-Care-Behaviors",
+      "duration_weeks": 6,
+      "tags": [
+        "diabetes",
+        "glycaemic-control",
+        "nutrition",
+        "activity",
+        "self-management"
+      ]
+    },
+    "schedule": {
+      "total_weeks": 6,
+      "sessions_per_week": 2,
+      "preferred_spacing_hours": 72
+    },
+    "nodes": {
+      "n_intro_welcome": {
+        "id": "n_intro_welcome",
+        "type": "intervention",
+        "label": "Welcome \u2014 Steady Glucose",
+        "week": 1,
+        "session": 1,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800",
+              "alt": "A balanced plate of colourful vegetables, lean protein and whole grains"
+            },
+            {
+              "type": "text",
+              "body": "# Steady Glucose\n\nOver the next **6 weeks** you'll build the day-to-day habits that keep blood sugar in a steadier range \u2014 not through strict rules, but through small, repeatable choices around food, movement, monitoring and medication.\n\nThis programme follows the internationally recognised **diabetes self-management education and support (DSMES)** framework and its seven self-care behaviours: healthy eating, being active, monitoring, taking medication, problem solving, reducing risks, and healthy coping. Each week focuses on one or two of these, with a single practical action to try.\n\nIt works alongside your clinical care; it does not replace your doctor, nurse or prescribed medication. If you use insulin or a sulfonylurea, keep your usual hypoglycaemia plan to hand.\n\nReady to begin?"
+            }
+          ]
+        },
+        "response": {
+          "kind": "choice",
+          "options": [
+            {
+              "value": "READY",
+              "label": "I'm ready \u2014 let's begin"
+            },
+            {
+              "value": "TELL_MORE",
+              "label": "Tell me how it works first"
+            },
+            {
+              "value": "NOT_NOW",
+              "label": "Come back to this later"
+            }
+          ]
+        },
+        "edges": [
+          {
+            "target": "n_w1_s1",
+            "condition": {
+              "on": "response_match",
+              "value": "READY"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_intro_science",
+            "condition": {
+              "on": "response_match",
+              "value": "TELL_MORE"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_end_deferred",
+            "condition": {
+              "on": "response_match",
+              "value": "NOT_NOW"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_end_deferred",
+            "condition": {
+              "on": "timeout",
+              "after_seconds": 172800
+            },
+            "priority": 9
+          }
+        ]
+      },
+      "n_intro_science": {
+        "id": "n_intro_science",
+        "type": "intervention",
+        "label": "How the programme works",
+        "week": 1,
+        "session": 1,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800",
+              "alt": "A supportive healthcare consultation"
+            },
+            {
+              "type": "text",
+              "body": "# One small action a week\n\nDiabetes is managed mostly between appointments, in ordinary daily decisions. Research on DSMES shows that structured, little-and-often support improves long-term glucose control (measured by **HbA1c**, roughly your average glucose over about three months) more reliably than one-off advice.\n\nSo each session is short and ends with a single thing to try before the next one. You are not expected to change everything at once. The aim is a handful of habits that fit your life and stay put.\n\nWe'll begin with what actually moves your glucose up and down."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_w1_s1",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_w1_s1",
+            "condition": {
+              "on": "timeout",
+              "after_seconds": 300
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_w1_s1": {
+        "id": "n_w1_s1",
+        "type": "intervention",
+        "label": "What blood glucose is",
+        "week": 1,
+        "session": 1,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800",
+              "alt": "A balanced plate of colourful vegetables, lean protein and whole grains"
+            },
+            {
+              "type": "text",
+              "body": "# What your numbers mean\n\nGlucose is the sugar your body runs on. After you eat, it rises; insulin helps move it from your blood into your cells. In type 2 diabetes and prediabetes that process works less well, so glucose stays higher for longer.\n\nTwo numbers matter. A **finger-prick or sensor reading** shows glucose right now. **HbA1c**, taken at the clinic every few months, reflects your average over about twelve weeks. Day-to-day choices nudge the readings; steady readings over months are what bring HbA1c down.\n\n**This week's action:** notice one reading a day and the meal or activity before it. No judgement \u2014 just watch."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_w1_s2",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_w1_s2",
+            "condition": {
+              "on": "timeout",
+              "after_seconds": 300
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_w1_s2": {
+        "id": "n_w1_s2",
+        "type": "intervention",
+        "label": "What raises and lowers it",
+        "week": 1,
+        "session": 2,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800",
+              "alt": "Person pausing on a walk outdoors"
+            },
+            {
+              "type": "text",
+              "body": "# The levers you control\n\nThree everyday things move glucose the most:\n\n- **Food**, especially the amount of carbohydrate in a meal\n- **Movement**, which helps muscles pull glucose out of the blood\n- **Medication**, taken as prescribed\n\nSleep and stress matter too, and we'll come to them. For now the useful idea is that a high reading is information, not failure \u2014 it usually points to one of these levers.\n\n**This week's action:** after one higher reading, ask which lever it points to. That question is the whole skill of self-management in miniature."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_w2_s1",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_w2_s1",
+            "condition": {
+              "on": "timeout",
+              "after_seconds": 300
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_w2_s1": {
+        "id": "n_w2_s1",
+        "type": "intervention",
+        "label": "The plate method",
+        "week": 2,
+        "session": 1,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800",
+              "alt": "A balanced plate of colourful vegetables, lean protein and whole grains"
+            },
+            {
+              "type": "text",
+              "body": "# A plate you can picture\n\nYou do not need to weigh food or count everything. A simple, evidence-based guide is the **plate method**: fill half your plate with non-starchy vegetables, a quarter with lean protein, and a quarter with carbohydrate foods (rice, bread, potato, pasta, fruit).\n\nThe vegetables and protein slow how fast glucose rises; the smaller carbohydrate portion keeps the peak gentler. It works at home, at a canteen, or at a restaurant.\n\n**This week's action:** build one meal a day to the plate. Just one."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_w2_s2",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_w2_s2",
+            "condition": {
+              "on": "timeout",
+              "after_seconds": 300
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_w2_s2": {
+        "id": "n_w2_s2",
+        "type": "intervention",
+        "label": "Carbohydrate awareness",
+        "week": 2,
+        "session": 2,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800",
+              "alt": "A balanced plate of colourful vegetables, lean protein and whole grains"
+            },
+            {
+              "type": "text",
+              "body": "# Not carb-free, carb-aware\n\nCarbohydrate raises glucose more than protein or fat, but it is not the enemy \u2014 the amount and type are what count. Swapping to higher-fibre versions (wholegrain bread, oats, pulses) slows the rise, and drinks with sugar raise it fastest of all.\n\nA practical move is to keep the carbohydrate portion to about a quarter of the plate and choose the fibre-rich version when there's a choice.\n\n**This week's action:** make one swap you'll actually repeat \u2014 a sugary drink for water or a diet version, or white for wholegrain."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_w3_s1",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_w3_s1",
+            "condition": {
+              "on": "timeout",
+              "after_seconds": 300
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_w3_s1": {
+        "id": "n_w3_s1",
+        "type": "intervention",
+        "label": "Move after meals",
+        "week": 3,
+        "session": 1,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1486218119243-13883505764c?w=800",
+              "alt": "Walking shoes by the door, ready for a short post-meal walk"
+            },
+            {
+              "type": "text",
+              "body": "# The post-meal walk\n\nMovement is one of the most direct glucose levers, and timing helps: a short walk **after eating** blunts the after-meal spike, because working muscles take up glucose without needing much insulin.\n\nIt does not have to be long. Ten to fifteen minutes after your largest meal is enough to make a measurable difference, and it compounds over weeks.\n\n**This week's action:** a 10-minute walk after one meal a day. Shoes by the door is half the battle."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_w3_s2",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_w3_s2",
+            "condition": {
+              "on": "timeout",
+              "after_seconds": 300
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_w3_s2": {
+        "id": "n_w3_s2",
+        "type": "intervention",
+        "label": "Activity that sticks",
+        "week": 3,
+        "session": 2,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800",
+              "alt": "Two people walking together outdoors"
+            },
+            {
+              "type": "text",
+              "body": "# Enough, not perfect\n\nGuidelines suggest about 150 minutes of moderate activity a week, but the best amount is the amount you will keep doing. Walking counts. Gardening counts. Taking the stairs counts. Breaking a sit every half hour helps glucose more than one hard session followed by a still day.\n\nAttaching movement to something you already do \u2014 a walk after lunch, stairs at the station \u2014 makes it automatic.\n\n**This week's action:** pick one daily anchor and attach ten minutes of movement to it."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_w4_s1",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_w4_s1",
+            "condition": {
+              "on": "timeout",
+              "after_seconds": 300
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_w4_s1": {
+        "id": "n_w4_s1",
+        "type": "intervention",
+        "label": "Reading your numbers",
+        "week": 4,
+        "session": 1,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800",
+              "alt": "A supportive healthcare consultation"
+            },
+            {
+              "type": "text",
+              "body": "# Numbers as feedback\n\nIf you monitor, the point is not a single perfect reading but the **pattern**. Checking at useful moments \u2014 fasting in the morning, or before and about two hours after a meal \u2014 shows how a particular meal or walk affected you.\n\nBring the pattern, not the panic, to your clinical team. A run of high mornings, or a spike after a specific meal, is exactly the kind of thing they can help you adjust.\n\n**This week's action:** check before and two hours after one meal, and note what the gap tells you."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_w4_s2",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_w4_s2",
+            "condition": {
+              "on": "timeout",
+              "after_seconds": 300
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_w4_s2": {
+        "id": "n_w4_s2",
+        "type": "intervention",
+        "label": "Spotting patterns",
+        "week": 4,
+        "session": 2,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800",
+              "alt": "Person pausing on a walk outdoors"
+            },
+            {
+              "type": "text",
+              "body": "# From readings to changes\n\nOver a week, patterns appear: mornings that start high, an afternoon dip, a reliable spike after one favourite meal. Each pattern points back to a lever \u2014 food, movement, medication, sleep or stress.\n\nThis is **problem solving**, the DSMES behaviour that ties the others together: notice a pattern, form a small hypothesis, try one change, and check whether the pattern shifts.\n\n**This week's action:** pick your clearest pattern and try one change against it this week."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_w5_s1",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_w5_s1",
+            "condition": {
+              "on": "timeout",
+              "after_seconds": 300
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_w5_s1": {
+        "id": "n_w5_s1",
+        "type": "intervention",
+        "label": "Medication, taken consistently",
+        "week": 5,
+        "session": 1,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800",
+              "alt": "A supportive healthcare consultation"
+            },
+            {
+              "type": "text",
+              "body": "# Consistency beats intensity\n\nIf medication is prescribed, taking it consistently is one of the strongest levers you have. Most diabetes medicines work by being present steadily; missed or irregular doses show up as higher and more erratic readings.\n\nIf a medicine is hard to remember, tie it to a fixed daily event, or use a weekly pill organiser. If side effects or cost are the barrier, that is a conversation for your prescriber \u2014 there are usually options. Never stop a medicine abruptly without advice.\n\n**This week's action:** set up one system that makes your next seven doses automatic."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_w5_s2",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_w5_s2",
+            "condition": {
+              "on": "timeout",
+              "after_seconds": 300
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_w5_s2": {
+        "id": "n_w5_s2",
+        "type": "intervention",
+        "label": "Highs, lows and sick days",
+        "week": 5,
+        "session": 2,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800",
+              "alt": "A supportive healthcare consultation"
+            },
+            {
+              "type": "text",
+              "body": "# Knowing the edges\n\nTwo situations are worth rehearsing before they happen. **Lows (hypoglycaemia)** mainly affect people on insulin or sulfonylureas: shaky, sweaty, confused \u2014 treat with fast-acting carbs and recheck. **Highs** that persist, especially with illness, thirst or drowsiness, need clinical advice.\n\nOn **sick days**, glucose often rises even when you eat less; keep taking most medicines (check which), keep fluids up, and monitor more often. Know your own red-flag numbers and who to call.\n\n**This week's action:** write down your hypo plan (if relevant) and one number that means 'call for advice'."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_w6_s1",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_w6_s1",
+            "condition": {
+              "on": "timeout",
+              "after_seconds": 300
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_w6_s1": {
+        "id": "n_w6_s1",
+        "type": "intervention",
+        "label": "Sleep, stress and glucose",
+        "week": 6,
+        "session": 1,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1455734729978-db1ae4f687fc?w=800",
+              "alt": "Restful sleep, which steadies morning glucose"
+            },
+            {
+              "type": "text",
+              "body": "# The quieter levers\n\nShort sleep and ongoing stress both raise glucose, through the hormones they release. It is common to see higher morning readings after a poor night or a hard week, with no change in food at all.\n\nThis is **healthy coping**, the DSMES behaviour that protects all the others: when sleep and stress are steadier, the food and movement habits are far easier to keep. A regular wind-down, and one reliable way to decompress, do real metabolic work.\n\n**This week's action:** protect a consistent sleep window for the next few nights and notice your morning readings."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_w6_s2",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_w6_s2",
+            "condition": {
+              "on": "timeout",
+              "after_seconds": 300
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_w6_s2": {
+        "id": "n_w6_s2",
+        "type": "intervention",
+        "label": "Your maintenance plan",
+        "week": 6,
+        "session": 2,
+        "content": {
+          "type": "composite",
+          "blocks": [
+            {
+              "type": "image",
+              "url": "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800",
+              "alt": "Two people walking together outdoors"
+            },
+            {
+              "type": "text",
+              "body": "# What you'll keep\n\nSix weeks in, the aim is a short list of habits that have earned their place: the plate you can picture, the swap you actually repeat, the post-meal walk, the pattern you watch, the system that keeps medication automatic, and the sleep window that steadies your mornings.\n\nYou will not do all of them perfectly, and you don't need to. Steady glucose comes from most of these, most days. Bring your patterns to your next clinical review \u2014 an improving HbA1c is the long-run reward for the daily ones.\n\n**Your action from here:** choose the two habits that helped most and commit to keeping them."
+            }
+          ]
+        },
+        "response": {
+          "kind": "none"
+        },
+        "edges": [
+          {
+            "target": "n_end_completed",
+            "condition": {
+              "on": "consumed"
+            },
+            "priority": 1
+          },
+          {
+            "target": "n_end_completed",
+            "condition": {
+              "on": "timeout",
+              "after_seconds": 300
+            },
+            "priority": 2
+          }
+        ]
+      },
+      "n_end_completed": {
+        "id": "n_end_completed",
+        "type": "end",
+        "outcome": "completed",
+        "label": "Programme completed \u2014 steadier glucose habits in place"
+      },
+      "n_end_deferred": {
+        "id": "n_end_deferred",
+        "type": "end",
+        "outcome": "deferred",
+        "label": "Programme paused"
+      }
+    }
   }
 ]
