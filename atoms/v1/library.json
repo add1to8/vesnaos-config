@@ -20,7 +20,7 @@
       "duration": ["2", "5", "10"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": ["heart_rate", "self_report_pain"],
+    "applicable_event_types": ["self_report_pain"],
     "applicable_severities": ["normal", "warning"],
     "rate_limit_secs": 43200,
     "response_type": "action_with_difficulty"
@@ -33,7 +33,7 @@
       "count": ["4", "6", "10"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": ["heart_rate", "blood_pressure", "self_report_pain"],
+    "applicable_event_types": ["blood_pressure", "self_report_pain"],
     "applicable_severities": ["normal", "warning"],
     "rate_limit_secs": 7200,
     "response_type": "action"
@@ -46,7 +46,7 @@
       "duration": ["2", "5", "10"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": ["heart_rate", "self_report_stress"],
+    "applicable_event_types": ["self_report_stress"],
     "applicable_severities": ["normal", "warning"],
     "rate_limit_secs": 43200,
     "response_type": "action_with_difficulty"
@@ -180,7 +180,7 @@
     "base_template": "Have a glass of water with a pinch of salt for electrolytes.",
     "variables": {},
     "clinical_constraints": [],
-    "applicable_event_types": ["heart_rate", "body_temperature"],
+    "applicable_event_types": ["body_temperature"],
     "applicable_severities": ["normal", "warning"],
     "rate_limit_secs": 14400,
     "response_type": "action"
@@ -193,7 +193,7 @@
       "duration": ["2", "5"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": ["heart_rate", "self_report_pain"],
+    "applicable_event_types": ["self_report_pain"],
     "applicable_severities": ["normal", "warning"],
     "rate_limit_secs": 21600,
     "response_type": "action_with_difficulty"
