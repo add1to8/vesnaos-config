@@ -7,7 +7,7 @@
       "duration": ["2", "5", "10", "20"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": ["steps", "hrv"],
+    "applicable_event_types": ["steps"],
     "applicable_severities": ["normal", "warning"],
     "rate_limit_secs": 43200,
     "response_type": "action_with_difficulty"
@@ -20,7 +20,7 @@
       "duration": ["2", "5", "10"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": ["heart_rate", "hrv", "self_report_pain"],
+    "applicable_event_types": ["heart_rate", "self_report_pain"],
     "applicable_severities": ["normal", "warning"],
     "rate_limit_secs": 43200,
     "response_type": "action_with_difficulty"
@@ -33,7 +33,7 @@
       "count": ["4", "6", "10"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": ["heart_rate", "hrv", "blood_pressure", "self_report_pain"],
+    "applicable_event_types": ["heart_rate", "blood_pressure", "self_report_pain"],
     "applicable_severities": ["normal", "warning"],
     "rate_limit_secs": 7200,
     "response_type": "action"
@@ -46,7 +46,7 @@
       "duration": ["2", "5", "10"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": ["hrv", "heart_rate", "self_report_stress"],
+    "applicable_event_types": ["heart_rate", "self_report_stress"],
     "applicable_severities": ["normal", "warning"],
     "rate_limit_secs": 43200,
     "response_type": "action_with_difficulty"
@@ -143,7 +143,7 @@
     "base_template": "Write down one thought and reframe it.",
     "variables": {},
     "clinical_constraints": [],
-    "applicable_event_types": ["hrv"],
+    "applicable_event_types": ["stress_index"],
     "applicable_severities": ["normal", "warning"],
     "rate_limit_secs": 43200,
     "response_type": "text_input",
@@ -168,7 +168,7 @@
       "duration": ["2", "5"]
     },
     "clinical_constraints": [],
-    "applicable_event_types": ["hrv", "self_report_mood", "self_report_stress"],
+    "applicable_event_types": ["self_report_mood", "self_report_stress"],
     "applicable_severities": ["normal", "warning"],
     "rate_limit_secs": 86400,
     "response_type": "text_input",
@@ -470,7 +470,7 @@
     "base_template": "Try vagal breathing for {duration} minutes: inhale slowly for 4 seconds, then exhale gently for 6 seconds. The longer exhale activates your parasympathetic nervous system — your body's natural calm response. Repeat until the time is up.",
     "variables": {"duration": ["2", "5", "10"]},
     "clinical_constraints": [],
-    "applicable_event_types": ["stress_index", "hrv", "recovery_readiness", "mood_risk", "self_report_stress"],
+    "applicable_event_types": ["stress_index", "recovery_readiness", "mood_risk", "self_report_stress"],
     "applicable_severities": ["normal", "warning", "critical"],
     "rate_limit_secs": 7200,
     "response_type": "action_with_difficulty"
